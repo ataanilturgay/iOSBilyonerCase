@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		571F81A62DC8ED4C00DACFA3 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81A52DC8ED4C00DACFA3 /* Moya */; };
+		571F81A82DC8ED4C00DACFA3 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81A72DC8ED4C00DACFA3 /* RxMoya */; };
+		571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81CF2DC90DE000DACFA3 /* RxCocoa */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		571F816E2DC8E8BE00DACFA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */,
+				571F81A82DC8ED4C00DACFA3 /* RxMoya in Frameworks */,
+				571F81A62DC8ED4C00DACFA3 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = iOSBilyonerCase;
 			packageProductDependencies = (
+				571F81A52DC8ED4C00DACFA3 /* Moya */,
+				571F81A72DC8ED4C00DACFA3 /* RxMoya */,
+				571F81CF2DC90DE000DACFA3 /* RxCocoa */,
 			);
 			productName = iOSBilyonerCase;
 			productReference = 571F81572DC8E8BB00DACFA3 /* iOSBilyonerCase.app */;
@@ -208,6 +220,11 @@
 			);
 			mainGroup = 571F814E2DC8E8BB00DACFA3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				571F81A42DC8ED4C00DACFA3 /* XCRemoteSwiftPackageReference "Moya" */,
+				571F81AC2DC8EE3000DACFA3 /* XCRemoteSwiftPackageReference "Reachability" */,
+				571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 571F81582DC8E8BB00DACFA3 /* Products */;
 			projectDirPath = "";
@@ -289,13 +306,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOSBilyonerCase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,13 +333,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOSBilyonerCase/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -563,6 +580,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		571F81A42DC8ED4C00DACFA3 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		571F81AC2DC8EE3000DACFA3 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		571F81A52DC8ED4C00DACFA3 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F81A42DC8ED4C00DACFA3 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		571F81A72DC8ED4C00DACFA3 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F81A42DC8ED4C00DACFA3 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+		571F81CF2DC90DE000DACFA3 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 571F814F2DC8E8BB00DACFA3 /* Project object */;
 }
