@@ -100,6 +100,7 @@
 				571F81592DC8E8BB00DACFA3 /* iOSBilyonerCase */,
 				571F81702DC8E8BE00DACFA3 /* iOSBilyonerCaseTests */,
 				571F817A2DC8E8BE00DACFA3 /* iOSBilyonerCaseUITests */,
+				571F82312DCA878600DACFA3 /* Frameworks */,
 				571F81582DC8E8BB00DACFA3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +113,13 @@
 				571F81772DC8E8BE00DACFA3 /* iOSBilyonerCaseUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		571F82312DCA878600DACFA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

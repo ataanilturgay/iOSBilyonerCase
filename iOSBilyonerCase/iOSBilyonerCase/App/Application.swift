@@ -23,6 +23,7 @@ final class Application: NSObject {
         super.init()
 
         updateProvider()
+        configureNavigationBar()
     }
 
     // MARK: - Private Methods
@@ -37,7 +38,6 @@ final class Application: NSObject {
     // MARK: - Public Methods
 
     func showInitialScreen(in window: UIWindow?) {
-
         guard let window = window, let provider = provider else { return }
         self.window = window
 
@@ -45,6 +45,12 @@ final class Application: NSObject {
         self.navigator.show(scene: .sports(viewModel: viewModel),
                             sender: nil,
                             transition: .root(in: window, animated: true, navigation: true))
+    }
+    
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
     
     class func topViewController(_ base: UIViewController? = UIApplication.shared.currentKeyWindow?.rootViewController) -> UIViewController? {

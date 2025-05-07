@@ -12,4 +12,8 @@ extension UICollectionView {
     func registerClassCell<T: UICollectionViewCell & Reusable>(type: T.Type) {
         register(type.self, forCellWithReuseIdentifier: type.reuseIdentifier)
     }
+    
+    func bind(providers: [BaseCellDataProtocol]) {
+        // reloadData veya daha gelişmiş binding yapılır burada
+    }
 }

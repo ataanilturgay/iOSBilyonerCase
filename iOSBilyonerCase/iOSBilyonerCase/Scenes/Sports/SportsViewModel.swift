@@ -32,7 +32,6 @@ extension SportsViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
         input.loadTrigger
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
@@ -73,11 +72,13 @@ extension SportsViewModel {
     }
     
     private func createCellModels(from data: [Sport]) -> [BaseCellDataProtocol] {
-        return data.map { sport in
-            return SportsTableViewCellViewModel(
-                sport: sport,
-                title: sport.title,
-                shouldShowTitle: true
+        return data
+            .filter({ $0.active })
+            .map { sport in
+                return SportsTableViewCellViewModel(
+                    sport: sport,
+                    title: sport.title,
+                    shouldShowTitle: true
             )
         }
     }

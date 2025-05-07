@@ -1,15 +1,14 @@
 //
-//  SportsViewController.swift
+//  CartViewController.swift
 //  iOSBilyonerCase
 //
-//  Created by Ata Anıl Turgay on 6.05.2025.
+//  Created by Ata Anıl Turgay on 7.05.2025.
 //
 
 import UIKit
 import RxSwift
-import RxCocoa
 
-final class SportsViewController: BaseViewController {
+class CartViewController: BaseViewController {
     
     // MARK: - UI Elements
 
@@ -22,8 +21,8 @@ final class SportsViewController: BaseViewController {
         return tableView
     }()
     
-    var viewModel: SportsViewModel
-    init(viewModel: SportsViewModel) {
+    var viewModel: CartViewModel
+    init(viewModel: CartViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,17 +36,13 @@ final class SportsViewController: BaseViewController {
         configureTableView()
     }
     
-    override func applyStyling() {
-        super.applyStyling()
-    }
-
     override func bindViewModel() {
         super.bindViewModel()
-
-        let input = SportsViewModel.Input(
-            loadTrigger: Observable.just(()),
-            selection: tableView.rx.modelSelected(SportsTableViewCellViewModel.self).asDriver()
+        
+        let input = CartViewModel.Input(
+            loadTrigger: Observable.just(())
         )
+        
         let output = viewModel.transform(input: input)
 
         output.items.asDriver(onErrorJustReturn: [])
@@ -61,32 +56,17 @@ final class SportsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.navigateToEvents.asObservable()
-            .map({ [weak self] (sport) -> EventsViewModel? in
-
-            guard let self else { return nil }
-
-            let eventDetailViewModel = EventsViewModel(
-                provider: self.viewModel.provider,
-                sport: sport)
-            return eventDetailViewModel
-        }).filterNil().subscribe(onNext: { [weak self] (viewModel) in
-
-            DispatchQueue.main.async {
-                guard let self else { return }
-                self.navigator.show(scene: .events(viewModel: viewModel),
-                                    sender: self,
-                                    animated: true,
-                                    transition: .navigation)
-            }
-        }).disposed(by: disposeBag)
+    }
+    
+    override func applyStyling() {
+        super.applyStyling()
     }
 }
 
 // MARK: - Configuration
 
-extension SportsViewController {
-
+extension CartViewController {
+    
     private func configureTableView() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -95,6 +75,6 @@ extension SportsViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        tableView.registerClassCell(type: SportsTableViewCell.self)
+        tableView.registerClassCell(type: CartTableViewCell.self)
     }
 }

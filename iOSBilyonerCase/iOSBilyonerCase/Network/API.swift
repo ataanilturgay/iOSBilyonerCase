@@ -17,7 +17,7 @@ protocol BetAPIService {
     
     func getSports() -> Single<[Sport]>
     func getEvents(sportKey: String) -> Single<[Event]>
-    func getEventOdds(id: String, sportKey: String) -> Single<Odd>
+    func getEventOdds(id: String, sportKey: String) -> Single<Odds>
 }
 
 class API {
@@ -51,8 +51,8 @@ extension API: BetAPIService {
         return requestArray(.events(sportKey: sportKey), type: Event.self)
     }
     
-    func getEventOdds(id: String, sportKey: String) -> Single<Odd>  {
-        return requestObject(.eventOdds(eventId: id, sportKey: sportKey), type: Odd.self)
+    func getEventOdds(id: String, sportKey: String) -> Single<Odds>  {
+        return requestObject(.eventOdds(eventId: id, sportKey: sportKey), type: Odds.self)
     }
 }
 

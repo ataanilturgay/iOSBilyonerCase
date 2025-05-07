@@ -1,5 +1,5 @@
 //
-//  Odd.swift
+//  Odds.swift
 //  iOSBilyonerCase
 //
 //  Created by Ata Anıl Turgay on 5.05.2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Odd: Decodable {
+struct Odds: Decodable {
     
     let id, sportKey, sportTitle: String
     let commenceTime: String
@@ -23,6 +23,13 @@ struct Odd: Decodable {
         case homeTeam = "home_team"
         case awayTeam = "away_team"
         case bookmakers
+    }
+}
+
+extension Odds {
+    
+    var eventTitle: String {
+        return "\(homeTeam) - \(awayTeam)"
     }
 }
 
@@ -55,3 +62,4 @@ struct Outcome: Decodable {
     let name: String
     let price, point: Double
 }
+

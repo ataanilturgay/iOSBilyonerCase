@@ -11,7 +11,7 @@ protocol Navigatable {
     var navigator: Navigator! { get set }
 }
 
-class Navigator {
+final class Navigator {
 
     static let `default` = Navigator()
 
@@ -22,6 +22,7 @@ class Navigator {
         case sports(viewModel: SportsViewModel)
         case events(viewModel: EventsViewModel)
         case eventDetail(viewModel: EventDetailViewModel)
+        case cart(viewModel: CartViewModel)
     }
 
     enum Transition {
@@ -59,6 +60,10 @@ class Navigator {
         case .eventDetail(let viewModel):
             
             let vc = EventDetailViewController(viewModel: viewModel)                    
+            return vc
+            
+        case .cart(let viewModel):
+            let vc = CartViewController(viewModel: viewModel)
             return vc
         }
     }

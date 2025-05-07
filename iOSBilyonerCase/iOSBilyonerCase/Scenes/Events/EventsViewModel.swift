@@ -42,7 +42,6 @@ extension EventsViewModel: ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        
         input.loadTrigger
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in

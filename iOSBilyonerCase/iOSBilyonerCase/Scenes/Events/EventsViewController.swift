@@ -29,7 +29,6 @@ final class EventsViewController: BaseViewController {
     private var searchTextTrigger = PublishSubject<String?>()
 
     var viewModel: EventsViewModel
-    
     init(viewModel: EventsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -41,21 +40,17 @@ final class EventsViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTableView()
         configureSearchController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         searchController.searchBar.resignFirstResponder()
     }
 
     override func applyStyling() {
         super.applyStyling()
-        
-        view.backgroundColor = .red
         searchController.searchBar.tintColor = .white
     }
 

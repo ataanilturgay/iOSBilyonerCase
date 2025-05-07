@@ -9,6 +9,7 @@ import Network
 import RxSwift
 
 final class ReachabilityManager {
+    
     static let shared = ReachabilityManager()
 
     private let monitor = NWPathMonitor()

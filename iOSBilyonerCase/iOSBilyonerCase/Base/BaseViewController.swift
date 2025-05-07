@@ -11,6 +11,13 @@ import RxCocoa
 
 class BaseViewController: UIViewController, Navigatable {
     
+    private lazy var cartButton: CartButton = {
+        let button = CartButton(type: .custom)
+        button.setImage(UIImage(systemName: "cart"), for: .normal)
+        button.addTarget(self, action: #selector(cartButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     let disposeBag = DisposeBag()
     var navigator: Navigator!
     
@@ -20,6 +27,23 @@ class BaseViewController: UIViewController, Navigatable {
 
         applyStyling()
         bindViewModel()
+        setupNavigationBar()
+        bindCartBadge()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
+    }
+    
+    func bindCartBadge() {
+        CartManager.shared.cartItemCount
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] count in
+                guard let self else { return }
+                self.cartButton.setBadge(count: count)
+            })
+            .disposed(by: disposeBag)
     }
 
     func bindViewModel() {
@@ -29,11 +53,18 @@ class BaseViewController: UIViewController, Navigatable {
 
     func applyStyling() {
 
+        view.backgroundColor = .primaryBackgroundColor
         // subclasses should override and call super
     }
     
     deinit {
         print("\(type(of: self)): Deinited")
+    }
+    
+    @objc private func cartButtonTapped() {
+        guard let provider = Application.shared.provider else { return }
+        let viewModel = CartViewModel(provider: provider)
+        navigator.show(scene: .cart(viewModel: viewModel), sender: self, transition: .sheetWithoutFullScreen)
     }
 }
 
