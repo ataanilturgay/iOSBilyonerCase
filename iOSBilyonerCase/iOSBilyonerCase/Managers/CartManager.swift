@@ -16,13 +16,13 @@ final class CartManager {
     let cartItemCount = BehaviorRelay<Int>(value: 0)
     let items = BehaviorRelay<[Cart]>(value: [])
     
+    let cartTotal = BehaviorRelay<Double>(value: 0)
+
     func addItem(item: Cart) {
         var currentItems = items.value
-        //if currentItems.contains(where: { $0.id == odds.id }) { return }
         currentItems.append(item)
         items.accept(currentItems)
         cartItemCount.accept(items.value.count)
-        //cartItemCount.accept(cartItemCount.value + 1)
     }
     
     func removeItem(item: Cart) {
@@ -33,5 +33,13 @@ final class CartManager {
             items.accept(currentItems)
             cartItemCount.accept(max(cartItemCount.value - 1, 0))
         }
+    }
+    
+    func calculateCartTotal() -> Double {
+        let total = items.value.reduce(1.0) { result, item in
+            return result * (item.price)
+        }
+        print("Toplam: \(total)")
+        return total
     }
 }

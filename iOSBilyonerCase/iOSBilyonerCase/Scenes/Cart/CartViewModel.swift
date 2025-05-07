@@ -12,24 +12,20 @@ final class CartViewModel: BaseViewModel {
     
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToEventsTrigger = PublishSubject<Sport>()
-    
-    var elements = [BaseCellDataProtocol]()
+    private var elements = [BaseCellDataProtocol]()
 }
 
 extension CartViewModel: ViewModelType {
     
     struct Input {
-
         let loadTrigger: Observable<Void>
     }
 
     struct Output {
-
         let items: BehaviorRelay<[BaseCellDataProtocol]>
     }
     
     func transform(input: Input) -> Output {
-        
         input.loadTrigger
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
@@ -40,7 +36,6 @@ extension CartViewModel: ViewModelType {
         
         return Output(items: behaviorElements)
     }
-    
 }
 
 // MARK: - Actions

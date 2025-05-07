@@ -108,7 +108,6 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
     }
 
     override func bind(withProtocol viewModel: BaseCellDataProtocol) {
-
         guard let model = viewModel as? EventDetailOddsTableViewCellViewModel else {
             return
         }

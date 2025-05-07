@@ -27,12 +27,10 @@ final class CartTableViewCellViewModel: BaseCellViewModel {
 extension CartTableViewCellViewModel: BaseCellDataProtocol {
 
     static var reuseIdentifier: String {
-
         return String(describing: CartTableViewCell.self)
     }
 
     var reuseIdentifier: String {
-
         return CartTableViewCellViewModel.reuseIdentifier
     }
 }

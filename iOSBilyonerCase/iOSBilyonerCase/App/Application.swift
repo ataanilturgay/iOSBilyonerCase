@@ -47,7 +47,7 @@ final class Application: NSObject {
                             transition: .root(in: window, animated: true, navigation: true))
     }
     
-    func configureNavigationBar() {
+    private func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
@@ -83,16 +83,6 @@ final class Application: NSObject {
         }
 
         return base
-    }
-}
-
-extension UIApplication {
-    
-    var currentKeyWindow: UIWindow? {
-        return connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow }
     }
 }
 

@@ -15,8 +15,7 @@ final class EventsTableViewCellViewModel: BaseCellViewModel {
     let teams: Driver<String>
     let searchText: String
 
-    init(event: Event, title: String, shouldShowTitle: Bool = false) {
-
+    init(event: Event, title: String) {
         self.event = event
         self.title = Driver.just(event.sportTitle)
         self.teams = Driver.just("\(event.homeTeam) - \(event.awayTeam)")
@@ -30,12 +29,10 @@ final class EventsTableViewCellViewModel: BaseCellViewModel {
 extension EventsTableViewCellViewModel: BaseCellDataProtocol {
 
     static var reuseIdentifier: String {
-
         return String(describing: EventsTableViewCell.self)
     }
 
     var reuseIdentifier: String {
-
         return EventsTableViewCellViewModel.reuseIdentifier
     }
 }

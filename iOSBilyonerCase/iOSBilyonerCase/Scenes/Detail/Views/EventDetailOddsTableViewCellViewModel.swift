@@ -29,12 +29,10 @@ final class EventDetailOddsTableViewCellViewModel: BaseCellViewModel {
 extension EventDetailOddsTableViewCellViewModel: BaseCellDataProtocol {
 
     static var reuseIdentifier: String {
-
         return String(describing: EventDetailOddsTableViewCell.self)
     }
 
     var reuseIdentifier: String {
-
         return EventDetailOddsTableViewCellViewModel.reuseIdentifier
     }
 }

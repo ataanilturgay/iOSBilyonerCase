@@ -77,8 +77,7 @@ extension SportsViewModel {
             .map { sport in
                 return SportsTableViewCellViewModel(
                     sport: sport,
-                    title: sport.title,
-                    shouldShowTitle: true
+                    title: sport.title
             )
         }
     }

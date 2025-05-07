@@ -27,12 +27,16 @@ class BaseViewController: UIViewController, Navigatable {
 
         applyStyling()
         bindViewModel()
-        setupNavigationBar()
+        configureCartButton()
         bindCartBadge()
     }
     
-    private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
+    func configureCartButton(show: Bool = true) {
+        if show {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func bindCartBadge() {
@@ -52,9 +56,9 @@ class BaseViewController: UIViewController, Navigatable {
     }
 
     func applyStyling() {
-
-        view.backgroundColor = .primaryBackgroundColor
+        
         // subclasses should override and call super
+        view.backgroundColor = .primaryBackgroundColor
     }
     
     deinit {
@@ -64,14 +68,16 @@ class BaseViewController: UIViewController, Navigatable {
     @objc private func cartButtonTapped() {
         guard let provider = Application.shared.provider else { return }
         let viewModel = CartViewModel(provider: provider)
-        navigator.show(scene: .cart(viewModel: viewModel), sender: self, transition: .sheetWithoutFullScreen)
+        navigator.show(scene: .cart(viewModel: viewModel),
+                       sender: self,
+                       animated: true,
+                       transition: .modalWithOverFullScreen(withNavigation: true))
     }
 }
 
 extension BaseViewController {
     
     func showAlert(with viewModel: Alert.ViewModel) {
-
         Alert.showAlert(with: viewModel)
     }
 }

@@ -12,9 +12,7 @@ final class SportsTableViewCellViewModel: BaseCellViewModel {
 
     let sport: Sport
     let title: Driver<String>
-
-    init(sport: Sport, title: String, shouldShowTitle: Bool = false) {
-
+    init(sport: Sport, title: String) {
         self.sport = sport
         self.title = Driver.just(sport.title)
         super.init()
@@ -26,12 +24,10 @@ final class SportsTableViewCellViewModel: BaseCellViewModel {
 extension SportsTableViewCellViewModel: BaseCellDataProtocol {
 
     static var reuseIdentifier: String {
-
         return String(describing: SportsTableViewCell.self)
     }
 
     var reuseIdentifier: String {
-
         return SportsTableViewCellViewModel.reuseIdentifier
     }
 }

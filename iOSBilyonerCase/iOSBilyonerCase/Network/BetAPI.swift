@@ -79,7 +79,6 @@ extension BetAPI {
         case .eventOdds:
             params["markets"] = "player_pass_tds,alternate_spreads"
         }
-        
         return params
     }
 }
@@ -89,13 +88,11 @@ protocol PayloadProtocol: Codable { }
 extension PayloadProtocol {
 
     func jsonDictionary() -> [String: Any] {
-
         let jsonEncoder = JSONEncoder()
         guard let data = try? jsonEncoder.encode(self),
             let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
                 return [String: Any]()
         }
-
         return jsonDictionary
     }
 }

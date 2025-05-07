@@ -28,13 +28,11 @@ final class EventDetailViewModel: BaseViewModel {
 extension EventDetailViewModel: ViewModelType {
     
     struct Input {
-
         let loadTrigger: Observable<Void>
         let selectedProviderIndex: Observable<Int>
     }
 
     struct Output {
-        
         let items: BehaviorRelay<[BaseCellDataProtocol]>
         let providers: BehaviorRelay<[BaseCellDataProtocol]>
     }

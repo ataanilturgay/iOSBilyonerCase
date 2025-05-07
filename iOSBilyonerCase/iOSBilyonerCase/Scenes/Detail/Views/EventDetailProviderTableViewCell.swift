@@ -46,7 +46,6 @@ final class EventDetailProviderTableViewCell: BaseTableViewCell {
     }
     
     override func prepareForReuse() {
-
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
@@ -65,11 +64,9 @@ final class EventDetailProviderTableViewCell: BaseTableViewCell {
     }
     
     override func bind(withProtocol viewModel: BaseCellDataProtocol) {
-
         guard let model = viewModel as? EventDetailProviderTableViewCellViewModel else {
             return
         }
-
         providerNames = model.betProviders.value
         DispatchQueue.main.async {
             self.collectionView.reloadData()

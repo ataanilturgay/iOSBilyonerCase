@@ -22,21 +22,18 @@ final class EventsViewModel: BaseViewModel {
     private let clearData = PublishSubject<Bool>()
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToDetailTrigger = PublishSubject<Event>()
-    
-    var elements = [BaseCellDataProtocol]()
+    private var elements = [BaseCellDataProtocol]()
 }
 
 extension EventsViewModel: ViewModelType {
     
     struct Input {
-
         let loadTrigger: Observable<Void>
         let selection: Driver<EventsTableViewCellViewModel>
         let searchText: Observable<String?>
     }
 
     struct Output {
-
         let items: BehaviorRelay<[BaseCellDataProtocol]>
         let navigateToDetail: Driver<Event>
     }
@@ -94,8 +91,7 @@ extension EventsViewModel {
         return data.map { event in
             return EventsTableViewCellViewModel(
                 event: event,
-                title: event.sportTitle,
-                shouldShowTitle: true
+                title: event.sportTitle
             )
         }
     }

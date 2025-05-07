@@ -50,7 +50,6 @@ final class EventsTableViewCell: BaseTableViewCell {
     }
     
     func configureContentView() {
-        
         contentView.addSubview(containerStackView)
 
         NSLayoutConstraint.activate([
@@ -62,26 +61,19 @@ final class EventsTableViewCell: BaseTableViewCell {
     }
     
     override func prepareForReuse() {
-
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
 
     override func bind(withProtocol viewModel: BaseCellDataProtocol) {
-
         guard let model = viewModel as? EventsTableViewCellViewModel else {
             return
         }
-
-        layoutIfNeeded()
-
         model.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: disposeBag)
         model.teams.asObservable().bind(to: teamsLabel.rx.text).disposed(by: disposeBag)
     }
 
     override func applyStyling() {
-
         super.applyStyling()
-
     }
 }

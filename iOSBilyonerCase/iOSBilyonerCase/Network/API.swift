@@ -23,7 +23,7 @@ protocol BetAPIService {
 class API {
 
     let provider: Networking
-
+    
     init(provider: Networking) {
         self.provider = provider
     }

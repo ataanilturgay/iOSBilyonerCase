@@ -32,7 +32,6 @@ final class SportsTableViewCell: BaseTableViewCell {
     }
     
     func configureContentView() {
-        
         contentView.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
@@ -44,24 +43,18 @@ final class SportsTableViewCell: BaseTableViewCell {
     }
     
     override func prepareForReuse() {
-
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
 
     override func bind(withProtocol viewModel: BaseCellDataProtocol) {
-
         guard let model = viewModel as? SportsTableViewCellViewModel else {
             return
         }
-
-        layoutIfNeeded()
-
         model.title.asObservable().bind(to: titleLabel.rx.text).disposed(by: disposeBag)
     }
 
     override func applyStyling() {
-
         super.applyStyling()
     }
 }

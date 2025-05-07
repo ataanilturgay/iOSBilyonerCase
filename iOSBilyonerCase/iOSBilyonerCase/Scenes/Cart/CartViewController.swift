@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class CartViewController: BaseViewController {
+final class CartViewController: BaseViewController {
     
     // MARK: - UI Elements
 
@@ -19,6 +19,12 @@ class CartViewController: BaseViewController {
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         return tableView
+    }()
+    
+    private lazy var cartTotalView: CartTotalView = {
+        let cartTotalView = CartTotalView()
+        cartTotalView.translatesAutoresizingMaskIntoConstraints = false
+        return cartTotalView
     }()
     
     var viewModel: CartViewModel
@@ -34,6 +40,12 @@ class CartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        configureCartButton(show: false)
+        configureNavigationBar()
+        
+        let cartTotal = CartManager.shared.calculateCartTotal()
+        let eventTitle = "Kuponda \(CartManager.shared.cartItemCount.value) adet etkinlik var"
+        cartTotalView.configure(with: CartTotalViewModel(carTotal: cartTotal, eventTitle: eventTitle))
     }
     
     override func bindViewModel() {
@@ -55,11 +67,19 @@ class CartViewController: BaseViewController {
                 return cell
             }
             .disposed(by: disposeBag)
-        
     }
     
     override func applyStyling() {
         super.applyStyling()
+    }
+}
+
+// MARK: - Actions
+
+extension CartViewController {
+    
+    @objc private func closeButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -69,12 +89,28 @@ extension CartViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
+        view.addSubview(cartTotalView)
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            
+            cartTotalView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cartTotalView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cartTotalView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            cartTotalView.heightAnchor.constraint(equalToConstant: 100)
         ])
         tableView.registerClassCell(type: CartTableViewCell.self)
+    }
+    
+    private func configureNavigationBar() {
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(closeButtonTapped))
+        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.title = "Kupon"
     }
 }
