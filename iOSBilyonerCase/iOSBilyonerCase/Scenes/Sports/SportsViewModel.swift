@@ -5,7 +5,6 @@
 //  Created by Ata Anıl Turgay on 6.05.2025.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -13,20 +12,18 @@ final class SportsViewModel: BaseViewModel {
     
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToEventsTrigger = PublishSubject<Sport>()
-    
     var elements = [BaseCellDataProtocol]()
 }
 
 extension SportsViewModel: ViewModelType {
     
     struct Input {
-
         let loadTrigger: Observable<Void>
         let selection: Driver<SportsTableViewCellViewModel>
+        let searchText: Observable<String?>
     }
 
     struct Output {
-
         let items: BehaviorRelay<[BaseCellDataProtocol]>
         let navigateToEvents: Driver<Sport>
     }
@@ -35,8 +32,20 @@ extension SportsViewModel: ViewModelType {
         input.loadTrigger
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
+                
                 guard let self else {  return }
                 self.getSports()
+            })
+            .disposed(by: disposeBag)
+        
+        input.searchText
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] query in
+                
+                guard let self else {  return }
+                self.filterContent(query: query ?? "")
             })
             .disposed(by: disposeBag)
         
@@ -62,7 +71,6 @@ extension SportsViewModel {
             .subscribe(onNext: { [weak self] model in
                 
                 guard let self else { return }
-
                 self.elements = self.createCellModels(from: model)
                 self.behaviorElements.accept(self.elements)
                 
@@ -79,6 +87,18 @@ extension SportsViewModel {
                     sport: sport,
                     title: sport.title
             )
+        }
+    }
+    
+    private func filterContent(query: String) {
+        if query.isEmpty {
+            behaviorElements.accept(elements)
+        } else {
+            let filtered = elements.filter {
+                guard let vm = $0 as? SportsTableViewCellViewModel else { return false }
+                return vm.searchText.lowercased().contains(query.lowercased())
+            }
+            behaviorElements.accept(filtered)
         }
     }
 }

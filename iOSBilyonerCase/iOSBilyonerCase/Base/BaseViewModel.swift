@@ -18,7 +18,7 @@ protocol ViewModelType {
     func transform(input: Input) -> Output
 }
 
-class BaseViewModel: NSObject {
+class BaseViewModel {
 
     let provider: BetAPIService
 
@@ -33,7 +33,6 @@ class BaseViewModel: NSObject {
 
     init(provider: BetAPIService) {
         self.provider = provider
-        super.init()
 
         error
             .mapToApiError()
@@ -44,15 +43,5 @@ class BaseViewModel: NSObject {
 
     deinit {
         print("\(type(of: self)): Deinited")
-    }
-    
-    func addItemToCart() {
-        let newCount = cartItemCount.value + 1
-        cartItemCount.accept(newCount)
-    }
-    
-    func removeItemFromCart() {
-        let newCount = max(0, cartItemCount.value - 1)
-        cartItemCount.accept(newCount)
     }
 }

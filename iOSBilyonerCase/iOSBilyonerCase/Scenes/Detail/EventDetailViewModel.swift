@@ -5,7 +5,6 @@
 //  Created by Ata Anıl Turgay on 6.05.2025.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -47,6 +46,7 @@ extension EventDetailViewModel: ViewModelType {
             }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] oddsModel in
+                
                 guard let self else { return }
                 self.oddsModel = oddsModel
                 if oddsModel.bookmakers.count == 0 { return }

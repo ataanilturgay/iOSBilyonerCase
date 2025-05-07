@@ -25,7 +25,8 @@ final class EventDetailViewController: BaseViewController {
     }()
     
     private let selectedProviderIndexRelay = BehaviorRelay<Int>(value: 0)
-
+    private var selectedIndex: Int = -1
+    
     private var models: [BaseCellDataProtocol] = []
     
     var viewModel: EventDetailViewModel
@@ -42,7 +43,7 @@ final class EventDetailViewController: BaseViewController {
         super.viewDidLoad()
         configureTableView()
         navigationItem.title = "Event Detail"
-
+        self.selectedIndex = -1
         AnalyticsManager.shared.sendEvent(event: .eventDetail)
     }
     
@@ -70,6 +71,12 @@ final class EventDetailViewController: BaseViewController {
             .drive(onNext: { [weak self] models in
                 guard let self else { return }
                 self.models = models
+                if self.selectedIndex == -1 {
+                    self.selectedIndex = 0
+                    DispatchQueue.main.async {
+                        self.selectedProviderIndexRelay.accept(0)
+                    }
+                }
                 self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -112,6 +119,7 @@ extension EventDetailViewController: UITableViewDelegate, UITableViewDataSource 
 extension EventDetailViewController: EventDetailProviderDelegate {
     
     func didSelectBetProvider(index: Int) {
+        selectedIndex = index
         selectedProviderIndexRelay.accept(index)
     }
 }

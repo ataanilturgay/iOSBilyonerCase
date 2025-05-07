@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 class BaseTableViewCell: UITableViewCell, Reusable {
 

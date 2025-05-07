@@ -12,6 +12,7 @@
 		571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81CF2DC90DE000DACFA3 /* RxCocoa */; };
 		571F82602DCBEADB00DACFA3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 571F825F2DCBEADB00DACFA3 /* FirebaseCore */; };
 		571F82622DCBED8100DACFA3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 571F82612DCBED8100DACFA3 /* FirebaseAnalytics */; };
+		57BA8B672DCC128C0030B2B7 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 57BA8B662DCC128C0030B2B7 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BA8B672DCC128C0030B2B7 /* RxSwift in Frameworks */,
 				571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */,
 				571F81A82DC8ED4C00DACFA3 /* RxMoya in Frameworks */,
 				571F82602DCBEADB00DACFA3 /* FirebaseCore in Frameworks */,
@@ -151,6 +153,7 @@
 				571F81CF2DC90DE000DACFA3 /* RxCocoa */,
 				571F825F2DCBEADB00DACFA3 /* FirebaseCore */,
 				571F82612DCBED8100DACFA3 /* FirebaseAnalytics */,
+				57BA8B662DCC128C0030B2B7 /* RxSwift */,
 			);
 			productName = iOSBilyonerCase;
 			productReference = 571F81572DC8E8BB00DACFA3 /* iOSBilyonerCase.app */;
@@ -217,6 +220,7 @@
 					};
 					571F816C2DC8E8BE00DACFA3 = {
 						CreatedOnToolsVersion = 16.3;
+						LastSwiftMigration = 1630;
 						TestTargetID = 571F81562DC8E8BB00DACFA3;
 					};
 					571F81762DC8E8BE00DACFA3 = {
@@ -491,14 +495,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ataanilturgay.iOSBilyonerCaseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSBilyonerCase.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOSBilyonerCase";
@@ -509,8 +516,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
@@ -528,6 +537,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ataanilturgay.iOSBilyonerCaseUITests;
@@ -544,6 +554,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 227XVM9M2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ataanilturgay.iOSBilyonerCaseUITests;
@@ -656,6 +667,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 571F825E2DCBE4FC00DACFA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
+		};
+		57BA8B662DCC128C0030B2B7 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

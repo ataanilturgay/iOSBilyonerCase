@@ -8,6 +8,7 @@
 import UIKit
 
 protocol Navigatable {
+    
     var navigator: Navigator! { get set }
 }
 

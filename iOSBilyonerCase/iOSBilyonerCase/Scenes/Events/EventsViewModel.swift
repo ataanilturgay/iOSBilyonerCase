@@ -5,7 +5,6 @@
 //  Created by Ata Anıl Turgay on 5.05.2025.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -19,7 +18,6 @@ final class EventsViewModel: BaseViewModel {
 
     // MARK: - Variables
 
-    private let clearData = PublishSubject<Bool>()
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToDetailTrigger = PublishSubject<Event>()
     private var elements = [BaseCellDataProtocol]()
@@ -79,8 +77,6 @@ extension EventsViewModel {
             .subscribe(onNext: { [weak self] model in
                 
                 guard let self else { return }
-
-                self.clearData.onNext(false)
                 self.elements = self.createCellModels(from: model)
                 self.behaviorElements.accept(self.elements)
                 

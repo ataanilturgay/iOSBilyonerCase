@@ -6,8 +6,6 @@
 //
 
 import RxSwift
-import RxCocoa
-import UIKit
 
 class BaseCellViewModel {
 

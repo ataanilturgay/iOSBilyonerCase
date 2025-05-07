@@ -22,6 +22,11 @@ final class SportsViewController: BaseViewController {
         return tableView
     }()
     
+    // MARK: - Variables
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var searchTextTrigger = PublishSubject<String?>()
+    
     var viewModel: SportsViewModel
     init(viewModel: SportsViewModel) {
         self.viewModel = viewModel
@@ -35,19 +40,28 @@ final class SportsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        configureSearchController()
         navigationItem.title = "Sports"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.searchBar.resignFirstResponder()
     }
     
     override func applyStyling() {
         super.applyStyling()
+        searchController.searchBar.tintColor = .white
     }
 
     override func bindViewModel() {
         super.bindViewModel()
 
+        let searchText = Observable.of(searchController.searchBar.rx.text.asObservable(), searchTextTrigger).merge()
         let input = SportsViewModel.Input(
             loadTrigger: Observable.just(()),
-            selection: tableView.rx.modelSelected(SportsTableViewCellViewModel.self).asDriver()
+            selection: tableView.rx.modelSelected(SportsTableViewCellViewModel.self).asDriver(),
+            searchText: searchText
         )
         let output = viewModel.transform(input: input)
 
@@ -81,6 +95,17 @@ final class SportsViewController: BaseViewController {
                                     transition: .navigation)
             }
         }).disposed(by: disposeBag)
+        
+        searchController.searchBar.rx.cancelButtonClicked.map({ _ in "" }).bind(to: searchTextTrigger).disposed(by: disposeBag)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension SportsViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchController.searchBar.resignFirstResponder()
     }
 }
 
@@ -97,5 +122,13 @@ extension SportsViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         tableView.registerClassCell(type: SportsTableViewCell.self)
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    }
+    
+    private func configureSearchController() {
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Sports"
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
 }

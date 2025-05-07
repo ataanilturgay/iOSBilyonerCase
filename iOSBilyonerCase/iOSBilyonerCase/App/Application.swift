@@ -47,10 +47,14 @@ final class Application {
                             transition: .root(in: window, animated: true, navigation: true))
     }
     
+    // MARK: - Configure Firebase
+    
     private func configureFirebase() {
         FirebaseApp.configure()
     }
     
+    // MARK: - Configure Nav Bar
+
     private func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)

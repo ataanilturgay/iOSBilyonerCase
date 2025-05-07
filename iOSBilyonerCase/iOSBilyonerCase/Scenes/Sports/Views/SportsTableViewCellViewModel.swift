@@ -12,9 +12,12 @@ final class SportsTableViewCellViewModel: BaseCellViewModel {
 
     let sport: Sport
     let title: Driver<String>
+    let searchText: String
+
     init(sport: Sport, title: String) {
         self.sport = sport
         self.title = Driver.just(sport.title)
+        self.searchText = sport.title
         super.init()
     }
 }

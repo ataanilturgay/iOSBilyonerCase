@@ -22,7 +22,6 @@ class BaseViewController: UIViewController, Navigatable {
     var navigator: Navigator!
     
     override func viewDidLoad() {
-
         super.viewDidLoad()
 
         applyStyling()
@@ -32,11 +31,7 @@ class BaseViewController: UIViewController, Navigatable {
     }
     
     func configureCartButton(show: Bool = true) {
-        if show {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
-        } else {
-            navigationItem.rightBarButtonItem = nil
-        }
+        navigationItem.rightBarButtonItem = show ? UIBarButtonItem(customView: cartButton) : nil
     }
     
     func bindCartBadge() {
@@ -74,6 +69,8 @@ class BaseViewController: UIViewController, Navigatable {
                        transition: .modalWithOverFullScreen(withNavigation: true))
     }
 }
+
+// MARK: - Show Alert
 
 extension BaseViewController {
     
