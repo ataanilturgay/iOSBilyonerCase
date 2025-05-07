@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct CartTotalViewModel {
+    
+    let carTotal: Double
+    let eventTitle: String
+}
+
 final class CartTotalView: BaseView {
     
     private var totalLabel: UILabel = {
@@ -67,10 +73,4 @@ final class CartTotalView: BaseView {
     override func applyStyling() {
         super.applyStyling()
     }
-}
-
-struct CartTotalViewModel {
-    
-    let carTotal: Double
-    let eventTitle: String
 }

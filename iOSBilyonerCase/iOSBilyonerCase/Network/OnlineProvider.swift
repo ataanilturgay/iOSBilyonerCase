@@ -36,14 +36,11 @@ final class OnlineProvider<Target> where Target: Moya.TargetType {
     }
     
     class func newSessionManager() -> Alamofire.Session {
-
         let sessionConfiguration = URLSessionConfiguration.af.default
-
         sessionConfiguration.headers = HTTPHeaders.default
         sessionConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         let manager = Alamofire.Session(configuration: sessionConfiguration)
-
         return manager
     }
 

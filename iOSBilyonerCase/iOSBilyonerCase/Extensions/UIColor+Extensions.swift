@@ -14,7 +14,6 @@ extension UIColor {
         if hexString.hasPrefix("#") {
             hexString.remove(at: hexString.startIndex)
         }
-
         return hexString.count == 6 ? hextToRgb(hex: hexString, alpha: alpha) : hextToRgba(hex: hexString)
     }
 
@@ -37,7 +36,6 @@ extension UIColor {
                            blue: CGFloat(b) / 255.0,
                            alpha: alpha)
         }
-        
         return UIColor.clear
     }
 
@@ -61,7 +59,6 @@ extension UIColor {
                            blue: CGFloat(b) / 255.0,
                            alpha: CGFloat(a) / 255.0)
         }
-        
         return UIColor.clear
     }
     
@@ -69,4 +66,3 @@ extension UIColor {
         return .from(hex: "#1baa52")
     }
 }
-

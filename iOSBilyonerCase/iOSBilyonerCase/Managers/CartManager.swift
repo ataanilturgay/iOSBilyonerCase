@@ -5,6 +5,7 @@
 //  Created by Ata Anıl Turgay on 7.05.2025.
 //
 
+import Foundation
 import RxSwift
 import RxCocoa
 
@@ -23,6 +24,7 @@ final class CartManager {
         currentItems.append(item)
         items.accept(currentItems)
         cartItemCount.accept(items.value.count)
+        AnalyticsManager.shared.sendEvent(event: .addToCart)
     }
     
     func removeItem(item: Cart) {
@@ -32,6 +34,7 @@ final class CartManager {
             currentItems.remove(at: index)
             items.accept(currentItems)
             cartItemCount.accept(max(cartItemCount.value - 1, 0))
+            AnalyticsManager.shared.sendEvent(event: .removeFromCart)
         }
     }
     
@@ -39,7 +42,6 @@ final class CartManager {
         let total = items.value.reduce(1.0) { result, item in
             return result * (item.price)
         }
-        print("Toplam: \(total)")
-        return total
+        return Double(round(1000 * total) / 1000)
     }
 }

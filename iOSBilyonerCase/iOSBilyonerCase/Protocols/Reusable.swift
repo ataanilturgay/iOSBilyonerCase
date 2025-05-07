@@ -15,12 +15,10 @@ public protocol Reusable {
 public extension Reusable {
 
     static var reuseIdentifier: String {
-
         return String(describing: self)
     }
 
     var reuseIdentifier: String {
-
         return type(of: self).reuseIdentifier
     }
 }

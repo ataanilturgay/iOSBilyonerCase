@@ -41,6 +41,9 @@ final class EventDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        navigationItem.title = "Event Detail"
+
+        AnalyticsManager.shared.sendEvent(event: .eventDetail)
     }
     
     override func applyStyling() {

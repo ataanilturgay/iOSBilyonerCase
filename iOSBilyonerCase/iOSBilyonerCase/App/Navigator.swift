@@ -41,7 +41,6 @@ final class Navigator {
     }
 
     private func get(scene: Scene) -> UIViewController? {
-
         switch scene {
         case .none:
             
@@ -69,7 +68,6 @@ final class Navigator {
     }
 
     func pop(sender: UIViewController?, toRoot: Bool = false, animated: Bool = true) {
-
         if toRoot {
             sender?.navigationController?.popToRootViewController(animated: animated)
         } else {
@@ -78,7 +76,6 @@ final class Navigator {
     }
 
     func dismiss(sender: UIViewController?, animated: Bool = true, completion: (() -> Void)? = nil) {
-
         if let navigationController = sender?.navigationController {
             navigationController.dismiss(animated: animated, completion: completion)
         } else {
@@ -104,7 +101,6 @@ final class Navigator {
 
     // MARK: - invoke a single segue
     func show(scene: Scene, sender: UIViewController?, animated: Bool = true, transition: Transition = .navigation) {
-
         if let target = get(scene: scene) {
             show(target: target, sender: sender, animated: animated, transition: transition)
         }
@@ -120,7 +116,6 @@ final class Navigator {
             window.makeKeyAndVisible()
 
             UIView.transition(with: window, duration: isAnimated ? 0.2 : 0.0, options: animationOptions, animations: nil, completion: nil)
-
             return
         default: break
         }
@@ -137,13 +132,11 @@ final class Navigator {
 
         switch transition {
         case .navigation:
-
             if let nav = sender.navigationController {
                 //add controller to navigation stack
                 nav.pushViewController(target, animated: animated)
             }
         case .rootNavigation:
-
             if let nav = sender.navigationController {
                 //set root viewController of navigationController
                 nav.setViewControllers([target], animated: animated)
@@ -151,7 +144,6 @@ final class Navigator {
                 fatalError("must have nav controller to use .rootNavigation")
             }
         case .modal(let isModalInPresentation):
-
             //present modally
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: target)
@@ -161,7 +153,6 @@ final class Navigator {
                 sender.present(nav, animated: animated, completion: nil)
             }
         case .modalWithFullScreen:
-
             //present modally full screen
             DispatchQueue.main.async {
                 let nav = UINavigationController(rootViewController: target)
@@ -171,52 +162,40 @@ final class Navigator {
         case .sheet:
             //pagesheet
             DispatchQueue.main.async {
-
                 target.modalPresentationStyle = .overFullScreen
                 sender.present(target, animated: animated, completion: nil)
             }
         case .modalWithoutNavigation:
-
             DispatchQueue.main.async {
                 target.modalPresentationStyle = .fullScreen
                 sender.present(target, animated: animated, completion: nil)
             }
-
         case .modalWithOverFullScreen(let hasNavigation):
             //present modally over full screen
             DispatchQueue.main.async {
-
                 if hasNavigation {
-
                     let nav = UINavigationController(rootViewController: target)
                     nav.modalPresentationStyle = .overFullScreen
                     sender.present(nav, animated: animated, completion: nil)
                 } else {
-
                     target.modalPresentationStyle = .overFullScreen
                     sender.present(target, animated: animated, completion: nil)
                 }
             }
-
         case .modalWithOverCurrentContext:
-
             DispatchQueue.main.async {
                 target.modalPresentationStyle = .overCurrentContext
                 sender.present(target, animated: animated, completion: nil)
             }
-
         case .uiActivitySheet:
             //UIActivitySheet - Share
             DispatchQueue.main.async {
-
                 target.modalPresentationStyle = .overFullScreen
                 sender.present(target, animated: animated, completion: nil)
             }
-
         case .sheetWithoutFullScreen:
             //present modally
             DispatchQueue.main.async {
-                
                 target.modalPresentationStyle = .pageSheet
                 sender.present(target, animated: animated, completion: nil)
             }

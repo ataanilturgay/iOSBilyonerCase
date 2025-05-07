@@ -10,6 +10,8 @@
 		571F81A62DC8ED4C00DACFA3 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81A52DC8ED4C00DACFA3 /* Moya */; };
 		571F81A82DC8ED4C00DACFA3 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81A72DC8ED4C00DACFA3 /* RxMoya */; };
 		571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 571F81CF2DC90DE000DACFA3 /* RxCocoa */; };
+		571F82602DCBEADB00DACFA3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 571F825F2DCBEADB00DACFA3 /* FirebaseCore */; };
+		571F82622DCBED8100DACFA3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 571F82612DCBED8100DACFA3 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 			files = (
 				571F81D02DC90DE000DACFA3 /* RxCocoa in Frameworks */,
 				571F81A82DC8ED4C00DACFA3 /* RxMoya in Frameworks */,
+				571F82602DCBEADB00DACFA3 /* FirebaseCore in Frameworks */,
+				571F82622DCBED8100DACFA3 /* FirebaseAnalytics in Frameworks */,
 				571F81A62DC8ED4C00DACFA3 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +149,8 @@
 				571F81A52DC8ED4C00DACFA3 /* Moya */,
 				571F81A72DC8ED4C00DACFA3 /* RxMoya */,
 				571F81CF2DC90DE000DACFA3 /* RxCocoa */,
+				571F825F2DCBEADB00DACFA3 /* FirebaseCore */,
+				571F82612DCBED8100DACFA3 /* FirebaseAnalytics */,
 			);
 			productName = iOSBilyonerCase;
 			productReference = 571F81572DC8E8BB00DACFA3 /* iOSBilyonerCase.app */;
@@ -232,6 +238,7 @@
 				571F81A42DC8ED4C00DACFA3 /* XCRemoteSwiftPackageReference "Moya" */,
 				571F81AC2DC8EE3000DACFA3 /* XCRemoteSwiftPackageReference "Reachability" */,
 				571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				571F825E2DCBE4FC00DACFA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 571F81582DC8E8BB00DACFA3 /* Products */;
@@ -614,6 +621,14 @@
 				minimumVersion = 6.9.0;
 			};
 		};
+		571F825E2DCBE4FC00DACFA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.12.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -631,6 +646,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 571F81CE2DC90DA200DACFA3 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
+		};
+		571F825F2DCBEADB00DACFA3 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F825E2DCBE4FC00DACFA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		571F82612DCBED8100DACFA3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 571F825E2DCBE4FC00DACFA3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

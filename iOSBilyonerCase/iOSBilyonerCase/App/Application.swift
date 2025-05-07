@@ -7,8 +7,10 @@
 
 import UIKit
 import RxSwift
+import FirebaseCore
+import FirebaseAnalytics
 
-final class Application: NSObject {
+final class Application {
     
     static let shared = Application()
     
@@ -17,13 +19,11 @@ final class Application: NSObject {
     var provider: BetAPIService?
     var navigator: Navigator
     
-    private override init() {
-                        
+    private init() {
         navigator = Navigator.default
-        super.init()
-
         updateProvider()
         configureNavigationBar()
+        configureFirebase()
     }
 
     // MARK: - Private Methods
@@ -47,6 +47,10 @@ final class Application: NSObject {
                             transition: .root(in: window, animated: true, navigation: true))
     }
     
+    private func configureFirebase() {
+        FirebaseApp.configure()
+    }
+    
     private func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
@@ -54,34 +58,29 @@ final class Application: NSObject {
     }
     
     class func topViewController(_ base: UIViewController? = UIApplication.shared.currentKeyWindow?.rootViewController) -> UIViewController? {
-
+        
         if let nav = base as? UINavigationController {
             return topViewController(nav.visibleViewController)
         }
-
+        
         if let tab = base as? UITabBarController {
             if let selected = tab.selectedViewController {
                 return topViewController(selected)
             }
         }
-
+        
         if let presented = base?.presentedViewController {
-
             if let _ = presented as? UISearchController {
-
                 return base
             } else {
-
                 return topViewController(presented)
             }
         }
-
+        
         if let searchController = base as? UISearchController,
            let next = searchController.next as? UIViewController {
-
             return topViewController(next)
         }
-
         return base
     }
 }

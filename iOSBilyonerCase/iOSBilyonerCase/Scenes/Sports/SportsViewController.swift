@@ -35,6 +35,7 @@ final class SportsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        navigationItem.title = "Sports"
     }
     
     override func applyStyling() {

@@ -65,4 +65,9 @@ extension CartViewModel {
             )
         }
     }
+    
+    func removeItem(at index: Int) {
+        let item = CartManager.shared.items.value[index]
+        CartManager.shared.removeItem(item: item)
+    }
 }

@@ -8,21 +8,8 @@
 import Foundation
 
 enum Global {
-    
-    enum Key {
-
-        enum Firebase {
-
-            static let token = "t2fytpzlmsqo"
-        }
-    }
  
     enum Constants {
-
-        enum Default {
-
-            static let cornerRadius: CGFloat = 3.0
-        }
 
         enum ErrorView {
 

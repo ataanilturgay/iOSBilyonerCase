@@ -42,10 +42,6 @@ final class CartViewController: BaseViewController {
         configureTableView()
         configureCartButton(show: false)
         configureNavigationBar()
-        
-        let cartTotal = CartManager.shared.calculateCartTotal()
-        let eventTitle = "Kuponda \(CartManager.shared.cartItemCount.value) adet etkinlik var"
-        cartTotalView.configure(with: CartTotalViewModel(carTotal: cartTotal, eventTitle: eventTitle))
     }
     
     override func bindViewModel() {
@@ -56,6 +52,17 @@ final class CartViewController: BaseViewController {
         )
         
         let output = viewModel.transform(input: input)
+        
+        Observable.combineLatest(CartManager.shared.cartItemCount.asObservable(),
+                                 CartManager.shared.items.asObservable())
+        .observe(on: MainScheduler.instance)
+        .subscribe(onNext: { [weak self] count, items in
+            guard let self else { return }
+            let cartTotal = CartManager.shared.calculateCartTotal()
+            let eventTitle = "Kuponda \(count) adet etkinlik var"
+            self.cartTotalView.configure(with: CartTotalViewModel(carTotal: cartTotal, eventTitle: eventTitle))
+        })
+        .disposed(by: disposeBag)
 
         output.items.asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { tableView, index, model in
@@ -67,6 +74,12 @@ final class CartViewController: BaseViewController {
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx.itemDeleted
+            .subscribe(onNext: {  [weak self] indexPath in
+                guard let self else { return }
+                self.viewModel.removeItem(at: indexPath.row)
+            }).disposed(by: disposeBag)
     }
     
     override func applyStyling() {
