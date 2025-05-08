@@ -103,6 +103,8 @@ final class SportsViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
         
+        viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)
+
         searchController.searchBar.rx.cancelButtonClicked.map({ _ in "" }).bind(to: searchTextTrigger).disposed(by: disposeBag)
     }
 }

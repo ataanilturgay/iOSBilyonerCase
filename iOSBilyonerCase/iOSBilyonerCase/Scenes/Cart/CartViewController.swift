@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 final class CartViewController: BaseViewController {
     
@@ -112,6 +113,8 @@ final class CartViewController: BaseViewController {
             emptyView.configure(with: .cart)
             self.view.addSubview(emptyView)
         }).disposed(by: disposeBag)
+        
+        viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)
         
         tableView.rx.itemDeleted
             .subscribe(onNext: {  [weak self] indexPath in

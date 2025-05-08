@@ -108,6 +108,8 @@ final class EventsViewController: BaseViewController {
             emptyView.configure(with: .events)
             self.view.addSubview(emptyView)
         }).disposed(by: disposeBag)
+        
+        viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)
 
         searchController.searchBar.rx.cancelButtonClicked.map({ _ in "" }).bind(to: searchTextTrigger).disposed(by: disposeBag)
     }

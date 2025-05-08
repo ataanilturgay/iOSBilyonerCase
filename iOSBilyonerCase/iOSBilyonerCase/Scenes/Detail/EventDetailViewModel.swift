@@ -57,6 +57,9 @@ extension EventDetailViewModel: ViewModelType {
                 }
                 self.betProviders.accept(self.createBetProvidersCellModels(from: oddsModel))
                 self.selectedProviderIndex.accept(0)
+            }, onError: { [weak self] error in
+                guard let self else { return }
+                self.hanleError(error: error)
             })
             .disposed(by: disposeBag)
         

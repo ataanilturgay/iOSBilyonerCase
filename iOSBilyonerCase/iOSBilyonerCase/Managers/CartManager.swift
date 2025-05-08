@@ -16,7 +16,6 @@ final class CartManager {
     
     let cartItemCount = BehaviorRelay<Int>(value: 0)
     let items = BehaviorRelay<[Cart]>(value: [])
-    
     let cartTotal = BehaviorRelay<Double>(value: 0)
 
     func addItem(item: Cart) {

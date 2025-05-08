@@ -25,7 +25,6 @@ class BaseViewModel {
     var disposeBag = DisposeBag()
 
     internal let error = ErrorTracker()
-
     let parsedError = PublishSubject<ApiError>()
     let showMessage = PublishSubject<Alert.ViewModel>()
     
@@ -43,5 +42,16 @@ class BaseViewModel {
 
     deinit {
         print("\(type(of: self)): Deinited")
+    }
+}
+
+extension BaseViewModel {
+    
+    func hanleError(error: Error) {
+        if let apiError = error as? ApiError {
+            self.parsedError.onNext(apiError)
+        } else {
+            self.parsedError.onNext(.unknown)
+        }
     }
 }

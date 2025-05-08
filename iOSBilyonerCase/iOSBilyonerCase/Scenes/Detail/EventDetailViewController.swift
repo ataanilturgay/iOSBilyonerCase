@@ -92,12 +92,7 @@ final class EventDetailViewController: BaseViewController {
             self.view.addSubview(emptyView)
         }).disposed(by: disposeBag)
         
-        
-        viewModel.parsedError.subscribe(onNext: { [weak self] (error) in
-
-            guard let self else { return }
-            self.showAlert(with: Alert.ViewModel(title: error.message))
-        }).disposed(by: disposeBag)
+        viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)
     }
 }
 

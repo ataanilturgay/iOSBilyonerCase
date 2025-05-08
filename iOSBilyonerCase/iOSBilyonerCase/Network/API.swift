@@ -23,7 +23,6 @@ protocol BetAPIService {
 class API {
 
     let provider: Networking
-    
     init(provider: Networking) {
         self.provider = provider
     }
@@ -31,12 +30,10 @@ class API {
     class func newSessionManager() -> Alamofire.Session {
 
         let sessionConfiguration = URLSessionConfiguration.af.default
-
         sessionConfiguration.headers = HTTPHeaders.default
         sessionConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
 
         let manager = Alamofire.Session(configuration: sessionConfiguration)
-
         return manager
     }
 }

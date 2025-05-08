@@ -62,7 +62,6 @@ final class ErrorTracker: SharedSequenceConvertibleType {
                     return .parse
                 }
             }
-
             return .unknown
         }
     }

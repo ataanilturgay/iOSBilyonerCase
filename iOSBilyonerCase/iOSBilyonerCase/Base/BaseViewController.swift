@@ -86,4 +86,11 @@ extension Reactive where Base: BaseViewController {
             baseVC.showAlert(with: viewModel)
         }
     }
+    
+    var errorAlert: Binder<ApiError> {
+        return Binder(self.base) { (baseVC, error) in
+            let alertViewModel = Alert.ViewModel(title: "Error", message: error.message)
+            baseVC.showAlert(with: alertViewModel)
+        }
+    }
 }
