@@ -10,7 +10,6 @@ import RxSwift
 import Alamofire
 import Foundation
 
-typealias Payload = PayloadProtocol
 typealias MoyaError = Moya.MoyaError
 
 protocol BetAPIService {
@@ -20,7 +19,7 @@ protocol BetAPIService {
     func getEventOdds(id: String, sportKey: String) -> Single<Odds>
 }
 
-class API {
+final class API {
 
     let provider: Networking
     init(provider: Networking) {

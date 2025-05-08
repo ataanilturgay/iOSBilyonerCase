@@ -84,10 +84,6 @@ extension CartViewModel {
 
 extension CartViewModel: MockTestViewModel {
     
-    func testableFilterContent(query: String) {
-        
-    }
-    
     func testableSetElements(elements: [BaseCellDataProtocol]) {
         self.elements = elements
     }

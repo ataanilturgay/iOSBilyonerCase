@@ -15,3 +15,11 @@ protocol MockTestViewModel {
     func getElements() -> [BaseCellDataProtocol]
     func getBehaviourElements() -> BehaviorRelay<[BaseCellDataProtocol]>
 }
+
+extension MockTestViewModel {
+    
+    func testableFilterContent(query: String) {
+        
+        // should override
+    }
+}
