@@ -35,10 +35,14 @@ final class SportsTableViewCell: BaseTableViewCell {
         contentView.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                            constant: Global.Constants.Constraints.defaultPadding),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                constant: Global.Constants.Constraints.defaultPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                 constant: -Global.Constants.Constraints.defaultPadding),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                               constant: -Global.Constants.Constraints.defaultPadding)
         ])
     }
     

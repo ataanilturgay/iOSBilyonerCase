@@ -96,6 +96,18 @@ final class EventsViewController: BaseViewController {
                                     transition: .navigation)
             }
         }).disposed(by: disposeBag)
+        
+        output.emptyDataEvent.debounce(.milliseconds(Global.Constants.ErrorView.delay)).drive(onNext: { [weak self] _ in
+
+            guard let self else { return }
+            self.tableView.removeFromSuperview()
+            let emptyView = EmptyView(frame: CGRect(x: self.view.bounds.size.width/2 - 100,
+                                                    y: self.view.bounds.size.height/2 - 50,
+                                                    width: 200,
+                                                    height: 100))
+            emptyView.configure(with: .events)
+            self.view.addSubview(emptyView)
+        }).disposed(by: disposeBag)
 
         searchController.searchBar.rx.cancelButtonClicked.map({ _ in "" }).bind(to: searchTextTrigger).disposed(by: disposeBag)
     }
@@ -129,6 +141,8 @@ extension EventsViewController {
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Events"
+        searchController.searchBar.sizeToFit()
+
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }

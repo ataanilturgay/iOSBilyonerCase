@@ -11,35 +11,13 @@ import RxSwift
 
 final class CartTableViewCell: BaseTableViewCell {
     
-    private enum Constants {
-        
-        enum Styling {
-            
-            enum Label {
-             
-                static let textColor: UIColor = .black
-                static let font: UIFont = .systemFont(ofSize: 14)
-            }
-            
-            enum View {
-                
-                static let cornerRadius: CGFloat = 8.0
-                static let borderColor: UIColor = .primaryBackgroundColor
-                static let borderWidth: CGFloat = 1.0
-            }
-        }
-        
-        enum Constraints {
-            
-            static let defaultPadding: CGFloat = 16
-        }
-    }
+    // MARK: - UI Elements
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Constants.Styling.Label.textColor
-        label.font = Constants.Styling.Label.font
+        label.textColor = Global.Constants.Styling.textColor
+        label.font = Global.Constants.Styling.font
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -48,8 +26,8 @@ final class CartTableViewCell: BaseTableViewCell {
     private lazy var teamsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Constants.Styling.Label.textColor
-        label.font = Constants.Styling.Label.font
+        label.textColor = Global.Constants.Styling.textColor
+        label.font = Global.Constants.Styling.font
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
@@ -91,22 +69,22 @@ final class CartTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                            constant: Constants.Constraints.defaultPadding),
+                                                            constant: Global.Constants.Constraints.defaultPadding),
             containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                                constant: Constants.Constraints.defaultPadding),
+                                                                constant: Global.Constants.Constraints.defaultPadding),
             containerVerticalStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                                 constant: -Constants.Constraints.defaultPadding),
+                                                                 constant: -Global.Constants.Constraints.defaultPadding),
             containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                                               constant: -Constants.Constraints.defaultPadding),
+                                                               constant: -Global.Constants.Constraints.defaultPadding),
 
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                               constant: Constants.Constraints.defaultPadding),
+                                               constant: Global.Constants.Constraints.defaultPadding),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                   constant: Constants.Constraints.defaultPadding),
+                                                   constant: Global.Constants.Constraints.defaultPadding),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                    constant: -Constants.Constraints.defaultPadding),
+                                                    constant: -Global.Constants.Constraints.defaultPadding),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                  constant: -Constants.Constraints.defaultPadding),
+                                                  constant: -Global.Constants.Constraints.defaultPadding),
         ])
     }
     
@@ -125,8 +103,8 @@ final class CartTableViewCell: BaseTableViewCell {
 
     override func applyStyling() {
         super.applyStyling()
-        containerView.layer.borderWidth = Constants.Styling.View.borderWidth
-        containerView.layer.borderColor = Constants.Styling.View.borderColor.cgColor
-        containerView.layer.cornerRadius = Constants.Styling.View.cornerRadius
+        containerView.layer.borderWidth = Global.Constants.Styling.borderWidth
+        containerView.layer.borderColor = Global.Constants.Styling.borderColor.cgColor
+        containerView.layer.cornerRadius = Global.Constants.Styling.cornerRadius
     }
 }

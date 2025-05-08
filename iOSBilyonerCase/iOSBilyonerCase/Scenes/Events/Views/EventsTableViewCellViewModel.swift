@@ -18,8 +18,8 @@ final class EventsTableViewCellViewModel: BaseCellViewModel {
     init(event: Event, title: String) {
         self.event = event
         self.title = Driver.just(event.sportTitle)
-        self.teams = Driver.just("\(event.homeTeam) - \(event.awayTeam)")
-        self.searchText = "\(event.homeTeam) - \(event.awayTeam)"
+        self.teams = Driver.just("\(event.homeTeam ?? "") - \(event.awayTeam ?? "")")
+        self.searchText = "\(event.homeTeam ?? "") - \(event.awayTeam ?? "")"
         super.init()
     }
 }

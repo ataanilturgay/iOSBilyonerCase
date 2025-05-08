@@ -16,6 +16,8 @@ protocol EventDetailOddsTableViewCellDelegate: AnyObject {
 
 final class EventDetailOddsTableViewCell: BaseTableViewCell {
     
+    // MARK: - UI Elements
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +55,7 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
         button.backgroundColor = .primaryBackgroundColor
-        button.layer.cornerRadius = 8
+        button.layer.cornerRadius = Global.Constants.Styling.cornerRadius
         button.addTarget(self, action:  #selector(addToCartButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -84,18 +86,27 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
         contentView.addSubview(containerView)
 
         NSLayoutConstraint.activate([
-            containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
-            containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor,
+                                                            constant: Global.Constants.Constraints.defaultPadding),
+            containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
+                                                                constant: Global.Constants.Constraints.defaultPadding),
+            containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
+                                                               constant: -Global.Constants.Constraints.defaultPadding),
             
-            addToCartButton.leadingAnchor.constraint(equalTo: containerVerticalStackView.trailingAnchor, constant: 16),
-            addToCartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            addToCartButton.leadingAnchor.constraint(equalTo: containerVerticalStackView.trailingAnchor,
+                                                     constant: Global.Constants.Constraints.defaultPadding),
+            addToCartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
+                                                      constant: -Global.Constants.Constraints.defaultPadding),
             addToCartButton.centerYAnchor.constraint(equalTo: containerVerticalStackView.centerYAnchor),
             
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                               constant: Global.Constants.Constraints.defaultPadding),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                   constant: Global.Constants.Constraints.defaultPadding),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                    constant: -Global.Constants.Constraints.defaultPadding),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                  constant: -Global.Constants.Constraints.defaultPadding),
             
             addToCartButton.widthAnchor.constraint(equalToConstant: 100),
             addToCartButton.heightAnchor.constraint(equalToConstant: 40)
@@ -119,9 +130,9 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
 
     override func applyStyling() {
         super.applyStyling()
-        containerView.layer.borderWidth = 1.0
-        containerView.layer.borderColor = UIColor.primaryBackgroundColor.cgColor
-        containerView.layer.cornerRadius = 8
+        containerView.layer.borderWidth = Global.Constants.Styling.borderWidth
+        containerView.layer.borderColor = Global.Constants.Styling.borderColor.cgColor
+        containerView.layer.cornerRadius = Global.Constants.Styling.cornerRadius
     }
     
     @objc private func addToCartButtonTapped() {
@@ -132,7 +143,6 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
                             point: item.outcome.point,
                             teams: item.teams)
 
-        print("Sepet butonuna tıklandı")
         self.delegate?.didSelectOdds(cartItem: cartItem)
     }
 }

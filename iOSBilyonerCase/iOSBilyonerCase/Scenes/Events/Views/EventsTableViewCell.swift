@@ -53,10 +53,14 @@ final class EventsTableViewCell: BaseTableViewCell {
         contentView.addSubview(containerStackView)
 
         NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor,
+                                                    constant: Global.Constants.Constraints.defaultPadding),
+            containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                        constant: Global.Constants.Constraints.defaultPadding),
+            containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                         constant: -Global.Constants.Constraints.defaultPadding),
+            containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                       constant: -Global.Constants.Constraints.defaultPadding)
         ])
     }
     

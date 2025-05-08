@@ -21,6 +21,7 @@ final class EventsViewModel: BaseViewModel {
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToDetailTrigger = PublishSubject<Event>()
     private var elements = [BaseCellDataProtocol]()
+    private let emptyDataTrigger = PublishSubject<Void>()
 }
 
 extension EventsViewModel: ViewModelType {
@@ -34,6 +35,7 @@ extension EventsViewModel: ViewModelType {
     struct Output {
         let items: BehaviorRelay<[BaseCellDataProtocol]>
         let navigateToDetail: Driver<Event>
+        let emptyDataEvent: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -51,6 +53,7 @@ extension EventsViewModel: ViewModelType {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] query in
                 guard let self else {  return }
+                if self.elements.isEmpty { return }
                 self.filterContent(query: query ?? "")
             })
             .disposed(by: disposeBag)
@@ -61,7 +64,9 @@ extension EventsViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         return Output(items: behaviorElements,
-                      navigateToDetail: navigateToDetailTrigger.asDriverOnErrorJustComplete())
+                      navigateToDetail: navigateToDetailTrigger.asDriverOnErrorJustComplete(),
+                      emptyDataEvent: emptyDataTrigger.asDriverOnErrorJustComplete()
+        )
     }
 }
 
@@ -77,6 +82,11 @@ extension EventsViewModel {
             .subscribe(onNext: { [weak self] model in
                 
                 guard let self else { return }
+                
+                if model.first?.homeTeam == nil {
+                    self.emptyDataTrigger.onNext(())
+                    return
+                }
                 self.elements = self.createCellModels(from: model)
                 self.behaviorElements.accept(self.elements)
                 

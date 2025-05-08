@@ -21,7 +21,7 @@ final class EventDetailViewModel: BaseViewModel {
     
     private var betProviders = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
-    var elements = [BaseCellDataProtocol]()
+    private let emptyDataTrigger = PublishSubject<Void>()
 }
 
 extension EventDetailViewModel: ViewModelType {
@@ -34,6 +34,7 @@ extension EventDetailViewModel: ViewModelType {
     struct Output {
         let items: BehaviorRelay<[BaseCellDataProtocol]>
         let providers: BehaviorRelay<[BaseCellDataProtocol]>
+        let emptyDataEvent: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -49,7 +50,11 @@ extension EventDetailViewModel: ViewModelType {
                 
                 guard let self else { return }
                 self.oddsModel = oddsModel
-                if oddsModel.bookmakers.count == 0 { return }
+                if oddsModel.bookmakers.count == 0 {
+                    
+                    self.emptyDataTrigger.onNext(())
+                    return
+                }
                 self.betProviders.accept(self.createBetProvidersCellModels(from: oddsModel))
                 self.selectedProviderIndex.accept(0)
             })
@@ -64,7 +69,8 @@ extension EventDetailViewModel: ViewModelType {
         
         return Output(
             items: behaviorElements,
-            providers: betProviders
+            providers: betProviders,
+            emptyDataEvent: emptyDataTrigger.asDriverOnErrorJustComplete()
         )
     }
 }
@@ -87,7 +93,6 @@ extension EventDetailViewModel {
                 EventDetailOddsTableViewCellViewModel(
                     odds: odds,
                     outcome: outcome,
-                    title: outcome.name + " - " + outcome.price.description,
                     shouldShowTitle: true
                 )
             }

@@ -11,8 +11,8 @@ struct Event: Decodable {
     
     let id, sportKey, sportTitle: String
     let commenceTime: String
-    let homeTeam: String
-    let awayTeam: String
+    let homeTeam: String?
+    let awayTeam: String?
     
     enum CodingKeys: String, CodingKey {
         

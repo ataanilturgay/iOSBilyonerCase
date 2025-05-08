@@ -28,7 +28,10 @@ final class Navigator {
 
     enum Transition {
 
-        case root(in: UIWindow, animated: Bool, navigation: Bool = false, animationOptions: UIView.AnimationOptions = .transitionFlipFromLeft)
+        case root(in: UIWindow,
+                  animated: Bool,
+                  navigation: Bool = false,
+                  animationOptions: UIView.AnimationOptions = .transitionFlipFromLeft)
         case navigation
         case rootNavigation
         case modal(isModalInPresentation: Bool = false)
@@ -44,21 +47,17 @@ final class Navigator {
     private func get(scene: Scene) -> UIViewController? {
         switch scene {
         case .none:
-            
             return nil
             
         case .sports(let viewModel):
-            
             let vc = SportsViewController(viewModel: viewModel)
             return vc
             
         case .events(let viewModel):
-            
             let vc = EventsViewController(viewModel: viewModel)
             return vc
             
         case .eventDetail(let viewModel):
-            
             let vc = EventDetailViewController(viewModel: viewModel)                    
             return vc
             

@@ -44,6 +44,13 @@ final class SportsViewController: BaseViewController {
         navigationItem.title = "Sports"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchController.searchBar.resignFirstResponder()
@@ -127,7 +134,10 @@ extension SportsViewController {
     
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.placeholder = "Search Sports"
+        searchController.searchBar.sizeToFit()
+
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }

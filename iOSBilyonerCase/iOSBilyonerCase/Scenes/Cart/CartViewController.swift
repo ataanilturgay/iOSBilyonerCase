@@ -10,13 +10,38 @@ import RxSwift
 
 final class CartViewController: BaseViewController {
     
+    // MARK: Constants
+    
+    private enum Constants {
+        
+        enum Constraints {
+            
+            static let bottomAnchor: CGFloat =  100.0
+            
+            enum CartTotalView {
+                
+                static let height: CGFloat = 100.0
+            }
+        }
+        
+        enum Texts {
+            
+            static let eventTitle = "Kuponda %d adet etkinlik var"
+            
+            enum NavBar {
+    
+                static let title: String = "Kupon"
+            }
+        }
+    }
+    
     // MARK: - UI Elements
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
@@ -59,7 +84,7 @@ final class CartViewController: BaseViewController {
         .subscribe(onNext: { [weak self] count, items in
             guard let self else { return }
             let cartTotal = CartManager.shared.calculateCartTotal()
-            let eventTitle = "Kuponda \(count) adet etkinlik var"
+            let eventTitle = String(format: Constants.Texts.eventTitle, count)
             self.cartTotalView.configure(with: CartTotalViewModel(carTotal: cartTotal, eventTitle: eventTitle))
         })
         .disposed(by: disposeBag)
@@ -74,6 +99,19 @@ final class CartViewController: BaseViewController {
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        output.emptyDataEvent.debounce(.milliseconds(Global.Constants.ErrorView.delay)).drive(onNext: { [weak self] _ in
+
+            guard let self else { return }
+            self.tableView.removeFromSuperview()
+            self.cartTotalView.removeFromSuperview()
+            let emptyView = EmptyView(frame: CGRect(x: self.view.bounds.size.width/2 - 100,
+                                                    y: self.view.bounds.size.height/2 - 50,
+                                                    width: 200,
+                                                    height: 100))
+            emptyView.configure(with: .cart)
+            self.view.addSubview(emptyView)
+        }).disposed(by: disposeBag)
         
         tableView.rx.itemDeleted
             .subscribe(onNext: {  [weak self] indexPath in
@@ -108,22 +146,23 @@ extension CartViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                              constant: -Constants.Constraints.bottomAnchor),
             
             cartTotalView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cartTotalView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cartTotalView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            cartTotalView.heightAnchor.constraint(equalToConstant: 100)
+            cartTotalView.heightAnchor.constraint(equalToConstant: Constants.Constraints.CartTotalView.height)
         ])
         tableView.registerClassCell(type: CartTableViewCell.self)
     }
     
     private func configureNavigationBar() {
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: Global.Constants.Images.close),
                                           style: .plain,
                                           target: self,
                                           action: #selector(closeButtonTapped))
         navigationItem.rightBarButtonItem = closeButton
-        navigationItem.title = "Kupon"
+        navigationItem.title = Constants.Texts.NavBar.title
     }
 }

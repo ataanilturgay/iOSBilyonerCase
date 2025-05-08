@@ -16,10 +16,7 @@ protocol EventDetailProviderDelegate: AnyObject {
 
 final class EventDetailProviderTableViewCell: BaseTableViewCell {
     
-    weak var delegate: EventDetailProviderDelegate?
-    
-    private var selectedIndex: Int = 0
-    private var providerNames = [Bookmaker]()
+    // MARK: - UI Elements
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +32,11 @@ final class EventDetailProviderTableViewCell: BaseTableViewCell {
         collectionView.backgroundColor = .white
         return collectionView
     }()
+    
+    weak var delegate: EventDetailProviderDelegate?
+    
+    private var selectedIndex: Int = 0
+    private var providerNames = [Bookmaker]()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

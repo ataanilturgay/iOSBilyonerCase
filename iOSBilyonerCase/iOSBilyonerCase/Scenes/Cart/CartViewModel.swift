@@ -13,6 +13,7 @@ final class CartViewModel: BaseViewModel {
     private let behaviorElements = BehaviorRelay<[BaseCellDataProtocol]>(value: [])
     private let navigateToEventsTrigger = PublishSubject<Sport>()
     private var elements = [BaseCellDataProtocol]()
+    private let emptyDataTrigger = PublishSubject<Void>()
 }
 
 extension CartViewModel: ViewModelType {
@@ -23,6 +24,7 @@ extension CartViewModel: ViewModelType {
 
     struct Output {
         let items: BehaviorRelay<[BaseCellDataProtocol]>
+        let emptyDataEvent: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -34,7 +36,8 @@ extension CartViewModel: ViewModelType {
             })
             .disposed(by: disposeBag)
         
-        return Output(items: behaviorElements)
+        return Output(items: behaviorElements,
+                      emptyDataEvent: emptyDataTrigger.asDriverOnErrorJustComplete())
     }
 }
 
@@ -49,7 +52,11 @@ extension CartViewModel {
             .subscribe(onNext: { [weak self] cartItems in
                 
                 guard let self else { return }
-
+                
+                if cartItems.isEmpty {
+                    self.emptyDataTrigger.onNext(())
+                    return
+                }
                 self.elements = self.createCellModels(from: cartItems)
                 self.behaviorElements.accept(self.elements)
                 

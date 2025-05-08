@@ -26,7 +26,6 @@ final class EventDetailViewController: BaseViewController {
     
     private let selectedProviderIndexRelay = BehaviorRelay<Int>(value: 0)
     private var selectedIndex: Int = -1
-    
     private var models: [BaseCellDataProtocol] = []
     
     var viewModel: EventDetailViewModel
@@ -81,6 +80,19 @@ final class EventDetailViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        output.emptyDataEvent.debounce(.milliseconds(Global.Constants.ErrorView.delay)).drive(onNext: { [weak self] _ in
+
+            guard let self else { return }
+            self.tableView.removeFromSuperview()
+            let emptyView = EmptyView(frame: CGRect(x: self.view.bounds.size.width/2 - 100,
+                                                    y: self.view.bounds.size.height/2 - 50,
+                                                    width: 200,
+                                                    height: 100))
+            emptyView.configure(with: .detail)
+            self.view.addSubview(emptyView)
+        }).disposed(by: disposeBag)
+        
+        
         viewModel.parsedError.subscribe(onNext: { [weak self] (error) in
 
             guard let self else { return }
@@ -88,6 +100,8 @@ final class EventDetailViewController: BaseViewController {
         }).disposed(by: disposeBag)
     }
 }
+
+// MARK: - UITableView Delegates & DataSources
 
 extension EventDetailViewController: UITableViewDelegate, UITableViewDataSource {
     

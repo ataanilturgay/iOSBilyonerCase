@@ -59,6 +59,7 @@ final class Application {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     class func topViewController(_ base: UIViewController? = UIApplication.shared.currentKeyWindow?.rootViewController) -> UIViewController? {

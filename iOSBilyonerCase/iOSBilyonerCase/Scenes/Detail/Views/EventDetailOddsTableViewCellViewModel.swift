@@ -15,7 +15,7 @@ final class EventDetailOddsTableViewCellViewModel: BaseCellViewModel {
     let title: String
     let teams: String
 
-    init(odds: Odds, outcome: Outcome, title: String, shouldShowTitle: Bool = false) {
+    init(odds: Odds, outcome: Outcome, shouldShowTitle: Bool = false) {
         self.odds = odds
         self.outcome = outcome
         self.title = "\(outcome.name) - (\(outcome.point)) - \(outcome.price)"
