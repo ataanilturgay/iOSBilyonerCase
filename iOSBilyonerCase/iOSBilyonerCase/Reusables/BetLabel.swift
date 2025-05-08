@@ -11,7 +11,7 @@ final class BetLabel: UILabel {
     
     // MARK: - Initializer
     
-    init(fontSize: CGFloat = Style.TextSize.body.size, textColor: UIColor = .black, alignment: NSTextAlignment = .left, numberOfLines: Int = 0) {
+    init(fontSize: CGFloat = BetStyling.TextSize.body.size, textColor: UIColor = .black, alignment: NSTextAlignment = .left, numberOfLines: Int = 0) {
         super.init(frame: .zero)
         
         configure(fontSize: fontSize,
@@ -26,7 +26,7 @@ final class BetLabel: UILabel {
     }
     
     // MARK: - Configuration
-    private func configure(fontSize: CGFloat = Style.TextSize.body.size,
+    private func configure(fontSize: CGFloat = BetStyling.TextSize.body.size,
                            textColor: UIColor = .black,
                            alignment: NSTextAlignment = .left,
                            numberOfLines: Int = 0) {

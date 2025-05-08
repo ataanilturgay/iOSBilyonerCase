@@ -22,7 +22,10 @@ final class EventDetailProviderTableViewCell: BaseTableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 8
-        layout.sectionInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        layout.sectionInset = .init(top: BetStyling.Spacing.medium,
+                                    left: BetStyling.Spacing.medium,
+                                    bottom: BetStyling.Spacing.medium,
+                                    right: BetStyling.Spacing.medium)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

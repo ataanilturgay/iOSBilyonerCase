@@ -11,8 +11,8 @@ import RxSwift
 
 final class EventsTableViewCell: BaseTableViewCell {
     
-    private let titleLabel = BetLabel(fontSize: Style.TextSize.subtitle.size)
-    private let teamsLabel = BetLabel(fontSize: Style.TextSize.subtitle.size)
+    private let titleLabel = BetLabel(fontSize: BetStyling.TextSize.subtitle.size)
+    private let teamsLabel = BetLabel(fontSize: BetStyling.TextSize.subtitle.size)
     
     private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, teamsLabel])
@@ -37,13 +37,13 @@ final class EventsTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                                    constant: Style.Spacing.medium),
+                                                    constant: BetStyling.Spacing.medium),
             containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                        constant: Style.Spacing.medium),
+                                                        constant: BetStyling.Spacing.medium),
             containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                         constant: -Style.Spacing.medium),
+                                                         constant: -BetStyling.Spacing.medium),
             containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                       constant: -Style.Spacing.medium)
+                                                       constant: -BetStyling.Spacing.medium)
         ])
     }
     

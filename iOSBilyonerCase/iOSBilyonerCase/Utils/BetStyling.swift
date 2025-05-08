@@ -1,5 +1,5 @@
 //
-//  Style.swift
+//  Styling.swift
 //  iOSBilyonerCase
 //
 //  Created by Ata Anıl Turgay on 9.05.2025.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-struct Style {
+struct BetStyling {
 
     enum Spacing {
 
-        static let small: CGFloat = 8.0
+        static let xsmall: CGFloat = 6.0
+        static let small: CGFloat = 12.0
         static let medium: CGFloat = 16.0
         static let large: CGFloat = 32.0
     }

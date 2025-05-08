@@ -81,26 +81,26 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                            constant: Style.Spacing.medium),
+                                                            constant: BetStyling.Spacing.medium),
             containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                                constant: Style.Spacing.medium),
+                                                                constant: BetStyling.Spacing.medium),
             containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                                               constant: -Style.Spacing.medium),
+                                                               constant: -BetStyling.Spacing.medium),
             
             addToCartButton.leadingAnchor.constraint(equalTo: containerVerticalStackView.trailingAnchor,
-                                                     constant: Style.Spacing.medium),
+                                                     constant: BetStyling.Spacing.medium),
             addToCartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                      constant: -Style.Spacing.medium),
+                                                      constant: -BetStyling.Spacing.medium),
             addToCartButton.centerYAnchor.constraint(equalTo: containerVerticalStackView.centerYAnchor),
             
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                               constant: Style.Spacing.medium),
+                                               constant: BetStyling.Spacing.medium),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                   constant: Style.Spacing.medium),
+                                                   constant: BetStyling.Spacing.medium),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                    constant: -Style.Spacing.medium),
+                                                    constant: -BetStyling.Spacing.medium),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                  constant: -Style.Spacing.medium),
+                                                  constant: -BetStyling.Spacing.medium),
             
             addToCartButton.widthAnchor.constraint(equalToConstant: Constants.CartButton.width),
             addToCartButton.heightAnchor.constraint(equalToConstant: Constants.CartButton.height)

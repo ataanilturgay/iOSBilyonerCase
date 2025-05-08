@@ -32,13 +32,13 @@ final class EventDetailProviderCollectionViewCell: BaseCollectionViewCell {
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                            constant: Constants.Constraints.padding),
+                                            constant: BetStyling.Spacing.xsmall),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                constant: Constants.Constraints.padding),
+                                                constant: BetStyling.Spacing.small),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                               constant: -Constants.Constraints.padding),
+                                               constant: -BetStyling.Spacing.medium),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                 constant: -Constants.Constraints.padding)
+                                                 constant: -BetStyling.Spacing.small)
         ])
     }
 
