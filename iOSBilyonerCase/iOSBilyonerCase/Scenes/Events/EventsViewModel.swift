@@ -104,3 +104,28 @@ extension EventsViewModel {
         }
     }
 }
+
+// MARK: - For Test
+
+extension EventsViewModel: MockTestViewModel {
+    
+    func testableFilterContent(query: String) {
+        self.filterContent(query: query)
+    }
+    
+    func testableSetElements(elements: [BaseCellDataProtocol]) {
+        self.elements = elements
+    }
+    
+    func testableSetBehaviourElements(elements: [BaseCellDataProtocol]) {
+        self.behaviorElements.accept(elements)
+    }
+    
+    func getElements() -> [BaseCellDataProtocol] {
+        return self.elements
+    }
+    
+    func getBehaviourElements() -> BehaviorRelay<[BaseCellDataProtocol]> {
+        return self.behaviorElements
+    }
+}

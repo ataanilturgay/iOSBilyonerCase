@@ -23,6 +23,13 @@ struct Networking: NetworkingType {
     static var requiresSecurePlugin: Bool = false
 }
 
+struct MockNetworking: NetworkingType {
+    
+    typealias T = BetAPI
+    let provider: OnlineProvider<BetAPI>
+    static var requiresSecurePlugin: Bool = false
+}
+
 // MARK: - "Public" interfaces
 
 extension Networking {
