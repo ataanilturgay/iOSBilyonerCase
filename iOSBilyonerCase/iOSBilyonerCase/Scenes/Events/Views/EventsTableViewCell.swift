@@ -11,25 +11,8 @@ import RxSwift
 
 final class EventsTableViewCell: BaseTableViewCell {
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private lazy var teamsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
+    private let titleLabel = BetLabel(fontSize: Style.TextSize.subtitle.size)
+    private let teamsLabel = BetLabel(fontSize: Style.TextSize.subtitle.size)
     
     private lazy var containerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, teamsLabel])
@@ -54,13 +37,13 @@ final class EventsTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                                    constant: Global.Constants.Constraints.defaultPadding),
+                                                    constant: Style.Spacing.medium),
             containerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                        constant: Global.Constants.Constraints.defaultPadding),
+                                                        constant: Style.Spacing.medium),
             containerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                         constant: -Global.Constants.Constraints.defaultPadding),
+                                                         constant: -Style.Spacing.medium),
             containerStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                       constant: -Global.Constants.Constraints.defaultPadding)
+                                                       constant: -Style.Spacing.medium)
         ])
     }
     

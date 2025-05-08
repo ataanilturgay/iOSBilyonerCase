@@ -20,15 +20,8 @@ final class EventDetailProviderCollectionViewCell: BaseCollectionViewCell {
     static let reuseIdentifier = "EventDetailProviderCollectionViewCell"
     
     // MARK: - UI Elements
-
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    
+    private let titleLabel = BetLabel(alignment: .center, numberOfLines: 1)
 
     override init(frame: CGRect) {
         super.init(frame: frame)

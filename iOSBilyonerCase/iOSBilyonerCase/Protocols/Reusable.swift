@@ -5,7 +5,6 @@
 //  Created by Ata Anıl Turgay on 5.05.2025.
 //
 
-/// Protocol to conform when supplying a reuse identifier
 public protocol Reusable {
 
     static var reuseIdentifier: String { get }

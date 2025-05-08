@@ -76,6 +76,8 @@ final class EventDetailProviderTableViewCell: BaseTableViewCell {
     }
 }
 
+// MARK: - UICollectionViewDelegate & UICollectionViewDataSource
+
 extension EventDetailProviderTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

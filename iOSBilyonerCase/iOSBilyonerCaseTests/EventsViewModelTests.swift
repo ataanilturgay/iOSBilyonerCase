@@ -62,22 +62,22 @@ final class EventsViewModelTests: XCTestCase {
         disposeBag = nil
     }
 
-    func testGetSports_whenDataExists_shouldReturnNotEmpty() {
-        let expectation = expectation(description: "Fetch sports from mock API")
-        viewModel.provider.getSports()
-            .subscribe(onSuccess: { sports in
-                XCTAssertNotEqual(sports.count, 0)
+    func testGetEvents_whenDataExists_shouldReturnNotEmpty() {
+        let expectation = expectation(description: "Fetch events")
+        viewModel.provider.getEvents(sportKey: "soccer_australia_aleague")
+            .subscribe(onSuccess: { events in
+                XCTAssertNotEqual(events.count, 0)
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         
         wait(for: [expectation], timeout: 1.0)
     }
     
-    func testGetSports_whenDataNoExists_shouldReturnEmpty() {
-        let expectation = expectation(description: "Fetch sports from mock API")
-        viewModelForError.provider.getSports()
-            .subscribe(onSuccess: { sports in
-                XCTAssertEqual(sports.count, 0)
+    func testGetEvents_whenDataNoExists_shouldReturnEmpty() {
+        let expectation = expectation(description: "Fetch events")
+        viewModelForError.provider.getEvents(sportKey: "soccer_australia_aleague")
+            .subscribe(onSuccess: { events in
+                XCTAssertEqual(events.count, 0)
                 expectation.fulfill()
             }).disposed(by: disposeBag)
         

@@ -49,7 +49,7 @@ final class SportsViewModelTests: XCTestCase {
     }
 
     func testGetSports_whenDataExists_shouldReturnNotEmpty() {
-        let expectation = expectation(description: "Fetch sports from mock API")
+        let expectation = expectation(description: "Fetch sports")
         viewModel.provider.getSports()
             .subscribe(onSuccess: { sports in
                 XCTAssertNotEqual(sports.count, 0)
@@ -60,7 +60,7 @@ final class SportsViewModelTests: XCTestCase {
     }
     
     func testGetSports_whenDataNoExists_shouldReturnEmpty() {
-        let expectation = expectation(description: "Fetch sports from mock API")
+        let expectation = expectation(description: "Fetch sports")
         viewModelForError.provider.getSports()
             .subscribe(onSuccess: { sports in
                 XCTAssertEqual(sports.count, 0)

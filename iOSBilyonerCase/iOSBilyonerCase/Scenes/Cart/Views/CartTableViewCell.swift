@@ -12,26 +12,8 @@ import RxSwift
 final class CartTableViewCell: BaseTableViewCell {
     
     // MARK: - UI Elements
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Global.Constants.Styling.textColor
-        label.font = Global.Constants.Styling.font
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private lazy var teamsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = Global.Constants.Styling.textColor
-        label.font = Global.Constants.Styling.font
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
+    private let titleLabel = BetLabel()
+    private let teamsLabel = BetLabel()
     
     private lazy var containerVerticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [teamsLabel,
@@ -50,7 +32,6 @@ final class CartTableViewCell: BaseTableViewCell {
     }()
     
     private var currentItem: EventDetailOddsTableViewCellViewModel?
-    private var odds: Odds?
     weak var delegate: EventDetailOddsTableViewCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -69,22 +50,22 @@ final class CartTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                            constant: Global.Constants.Constraints.defaultPadding),
+                                                            constant: Style.Spacing.medium),
             containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                                constant: Global.Constants.Constraints.defaultPadding),
+                                                                constant: Style.Spacing.medium),
             containerVerticalStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                                 constant: -Global.Constants.Constraints.defaultPadding),
+                                                                 constant: -Style.Spacing.medium),
             containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                                               constant: -Global.Constants.Constraints.defaultPadding),
+                                                               constant: -Style.Spacing.medium),
 
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                               constant: Global.Constants.Constraints.defaultPadding),
+                                               constant: Style.Spacing.medium),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                   constant: Global.Constants.Constraints.defaultPadding),
+                                                   constant: Style.Spacing.medium),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                    constant: -Global.Constants.Constraints.defaultPadding),
+                                                    constant: -Style.Spacing.medium),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                  constant: -Global.Constants.Constraints.defaultPadding),
+                                                  constant: -Style.Spacing.medium),
         ])
     }
     

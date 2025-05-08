@@ -26,8 +26,6 @@ class BaseViewModel {
 
     internal let error = ErrorTracker()
     let parsedError = PublishSubject<ApiError>()
-    let showMessage = PublishSubject<Alert.ViewModel>()
-    
     let cartItemCount = BehaviorRelay<Int>(value: 0)
 
     init(provider: BetAPIService) {
@@ -42,16 +40,5 @@ class BaseViewModel {
 
     deinit {
         print("\(type(of: self)): Deinited")
-    }
-}
-
-extension BaseViewModel {
-    
-    func hanleError(error: Error) {
-        if let apiError = error as? ApiError {
-            self.parsedError.onNext(apiError)
-        } else {
-            self.parsedError.onNext(.unknown)
-        }
     }
 }

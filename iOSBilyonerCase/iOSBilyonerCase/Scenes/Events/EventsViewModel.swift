@@ -90,9 +90,6 @@ extension EventsViewModel {
                 self.elements = self.createCellModels(from: model)
                 self.behaviorElements.accept(self.elements)
                 
-            }, onError: { [weak self] error in
-                guard let self else { return }
-                self.hanleError(error: error)
             }).disposed(by: disposeBag)
     }
     

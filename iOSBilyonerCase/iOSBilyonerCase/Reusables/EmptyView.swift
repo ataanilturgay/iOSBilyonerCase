@@ -36,23 +36,8 @@ enum EmptyTypes {
 
 final class EmptyView: BaseView {
     
-    private var emptyLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
-    
-    private var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
+    private let emptyLabel = BetLabel(textColor: .white)
+    private let descriptionLabel = BetLabel(textColor: .white)
     
     private lazy var containerVerticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emptyLabel,

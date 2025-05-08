@@ -13,15 +13,7 @@ final class SportsTableViewCell: BaseTableViewCell {
     
     // MARK: - UI Elements
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
+    private let titleLabel = BetLabel(fontSize: Style.TextSize.subtitle.size)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,13 +30,13 @@ final class SportsTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                            constant: Global.Constants.Constraints.defaultPadding),
+                                            constant: Style.Spacing.medium),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                constant: Global.Constants.Constraints.defaultPadding),
+                                                constant: Style.Spacing.medium),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                 constant: -Global.Constants.Constraints.defaultPadding),
+                                                 constant: -Style.Spacing.medium),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                               constant: -Global.Constants.Constraints.defaultPadding)
+                                               constant: -Style.Spacing.medium)
         ])
     }
     

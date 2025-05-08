@@ -19,8 +19,6 @@ final class EventDetailViewController: BaseViewController {
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.estimatedRowHeight = 60
-        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
@@ -41,7 +39,7 @@ final class EventDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        navigationItem.title = "Event Detail"
+        navigationItem.title = Global.Constants.Pages.eventDetail
         self.selectedIndex = -1
         AnalyticsManager.shared.sendEvent(event: .eventDetail)
     }
@@ -91,7 +89,7 @@ final class EventDetailViewController: BaseViewController {
     }
 }
 
-// MARK: - UITableView Delegates & DataSources
+// MARK: - UITableViewDelegate & UITableViewDataSource
 
 extension EventDetailViewController: UITableViewDelegate, UITableViewDataSource {
     

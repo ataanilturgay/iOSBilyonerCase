@@ -13,7 +13,7 @@ final class CartButton: UIButton {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
-        label.textColor = .red
+        label.textColor = .primaryBackgroundColor
         label.font = .systemFont(ofSize: 8, weight: .bold)
         label.textAlignment = .center
         label.layer.cornerRadius = 6

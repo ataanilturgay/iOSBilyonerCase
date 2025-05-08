@@ -42,7 +42,7 @@ final class EventsViewController: BaseViewController {
         super.viewDidLoad()
         configureTableView()
         configureSearchController()
-        navigationItem.title = "Events"
+        navigationItem.title = Global.Constants.Pages.events
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -137,7 +137,8 @@ extension EventsViewController {
     
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Events"
+        searchController.searchBar.placeholder = Global.Constants.searchPlaceholder
+        searchController.searchBar.setValue(Global.Constants.cancelText, forKey: "cancelButtonText")
         searchController.searchBar.sizeToFit()
 
         navigationItem.hidesSearchBarWhenScrolling = false

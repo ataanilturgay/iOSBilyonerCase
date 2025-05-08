@@ -41,7 +41,7 @@ final class SportsViewController: BaseViewController {
         super.viewDidLoad()
         configureTableView()
         configureSearchController()
-        navigationItem.title = "Sports"
+        navigationItem.title = Global.Constants.Pages.sports
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +137,8 @@ extension SportsViewController {
     private func configureSearchController() {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Sports"
+        searchController.searchBar.placeholder = Global.Constants.searchPlaceholder
+        searchController.searchBar.setValue(Global.Constants.cancelText, forKey: "cancelButtonText")
         searchController.searchBar.sizeToFit()
 
         navigationItem.hidesSearchBarWhenScrolling = false

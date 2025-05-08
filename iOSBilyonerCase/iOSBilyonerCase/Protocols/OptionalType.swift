@@ -16,6 +16,7 @@ protocol OptionalType {
 }
 
 extension Optional: OptionalType {
+    
     var value: Wrapped? {
         return self
     }
@@ -43,25 +44,6 @@ extension Observable where Element: OptionalType {
             } else {
                 return .empty()
             }
-        }
-    }
-}
-
-protocol BooleanType {
-    
-    var boolValue: Bool { get }
-}
-extension Bool: BooleanType {
-    
-    var boolValue: Bool { return self }
-}
-
-// Maps true to false and vice versa
-extension Observable where Element: BooleanType {
-    
-    func not() -> Observable<Bool> {
-        return self.map { input in
-            return !input.boolValue
         }
     }
 }

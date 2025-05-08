@@ -15,24 +15,9 @@ struct CartTotalViewModel {
 
 final class CartTotalView: BaseView {
     
-    private var totalLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
-    
-    private var eventNumberLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
-        return label
-    }()
-    
+    private let totalLabel = BetLabel(textColor: .white)
+    private let eventNumberLabel = BetLabel(textColor: .white)
+
     private lazy var containerVerticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [totalLabel,
                                                        eventNumberLabel])

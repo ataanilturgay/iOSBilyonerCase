@@ -13,24 +13,13 @@ protocol NetworkingType {
 
     associatedtype T: TargetType
     var provider: OnlineProvider<T> { get }
-    static var requiresSecurePlugin: Bool { get }
 }
 
 struct Networking: NetworkingType {
 
     typealias T = BetAPI
     let provider: OnlineProvider<BetAPI>
-    static var requiresSecurePlugin: Bool = false
 }
-
-struct MockNetworking: NetworkingType {
-    
-    typealias T = BetAPI
-    let provider: OnlineProvider<BetAPI>
-    static var requiresSecurePlugin: Bool = false
-}
-
-// MARK: - "Public" interfaces
 
 extension Networking {
 
@@ -51,15 +40,6 @@ extension NetworkingType {
 
 extension NetworkingType {
 
-    static func endpointsClosure<T>() -> (T) -> Endpoint where T: TargetType {
-
-        return { target in
-            let endpoint = MoyaProvider.defaultEndpointMapping(for: target)
-
-            return endpoint
-        }
-    }
-
     static var plugins: [PluginType] {
 
         var plugins: [PluginType] = []
@@ -70,20 +50,6 @@ extension NetworkingType {
         }
 
         return plugins
-    }
-
-    // (Endpoint<Target>, NSURLRequest -> Void) -> Void
-    static func endpointResolver() -> MoyaProvider<T>.RequestClosure {
-
-        return { (endpoint, closure) in
-            do {
-                var request = try endpoint.urlRequest() // endpoint.urlRequest
-                request.httpShouldHandleCookies = false
-                closure(.success(request))
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-        }
     }
 }
 

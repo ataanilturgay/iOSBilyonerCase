@@ -16,28 +16,22 @@ protocol EventDetailOddsTableViewCellDelegate: AnyObject {
 
 final class EventDetailOddsTableViewCell: BaseTableViewCell {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        
+        enum CartButton {
+            
+            static let width: CGFloat = 100.0
+            static let height: CGFloat = 40.0
+        }
+    }
+    
     // MARK: - UI Elements
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
-    private lazy var teamsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
-    }()
-    
+    private let titleLabel = BetLabel()
+    private let teamsLabel = BetLabel()
+
     private lazy var containerVerticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [teamsLabel,
                                                        titleLabel])
@@ -51,7 +45,7 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
     private lazy var addToCartButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Kupona Ekle", for: .normal)
+        button.setTitle(Global.Constants.addToCartText, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
         button.backgroundColor = .primaryBackgroundColor
@@ -87,29 +81,29 @@ final class EventDetailOddsTableViewCell: BaseTableViewCell {
 
         NSLayoutConstraint.activate([
             containerVerticalStackView.topAnchor.constraint(equalTo: containerView.topAnchor,
-                                                            constant: Global.Constants.Constraints.defaultPadding),
+                                                            constant: Style.Spacing.medium),
             containerVerticalStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor,
-                                                                constant: Global.Constants.Constraints.defaultPadding),
+                                                                constant: Style.Spacing.medium),
             containerVerticalStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,
-                                                               constant: -Global.Constants.Constraints.defaultPadding),
+                                                               constant: -Style.Spacing.medium),
             
             addToCartButton.leadingAnchor.constraint(equalTo: containerVerticalStackView.trailingAnchor,
-                                                     constant: Global.Constants.Constraints.defaultPadding),
+                                                     constant: Style.Spacing.medium),
             addToCartButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor,
-                                                      constant: -Global.Constants.Constraints.defaultPadding),
+                                                      constant: -Style.Spacing.medium),
             addToCartButton.centerYAnchor.constraint(equalTo: containerVerticalStackView.centerYAnchor),
             
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                               constant: Global.Constants.Constraints.defaultPadding),
+                                               constant: Style.Spacing.medium),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
-                                                   constant: Global.Constants.Constraints.defaultPadding),
+                                                   constant: Style.Spacing.medium),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
-                                                    constant: -Global.Constants.Constraints.defaultPadding),
+                                                    constant: -Style.Spacing.medium),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                                  constant: -Global.Constants.Constraints.defaultPadding),
+                                                  constant: -Style.Spacing.medium),
             
-            addToCartButton.widthAnchor.constraint(equalToConstant: 100),
-            addToCartButton.heightAnchor.constraint(equalToConstant: 40)
+            addToCartButton.widthAnchor.constraint(equalToConstant: Constants.CartButton.width),
+            addToCartButton.heightAnchor.constraint(equalToConstant: Constants.CartButton.height)
         ])
     }
     

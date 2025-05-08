@@ -11,12 +11,4 @@ protocol BaseCellDataProtocol {
 
     static var reuseIdentifier: String { get }
     var reuseIdentifier: String { get }
-    var shouldHideCell: Bool { get }
-}
-
-extension BaseCellDataProtocol {
-
-    var shouldHideCell: Bool {
-        return false
-    }
 }

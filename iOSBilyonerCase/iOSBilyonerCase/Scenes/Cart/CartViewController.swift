@@ -28,11 +28,6 @@ final class CartViewController: BaseViewController {
         enum Texts {
             
             static let eventTitle = "Kuponda %d adet etkinlik var"
-            
-            enum NavBar {
-    
-                static let title: String = "Kupon"
-            }
         }
     }
     
@@ -161,6 +156,6 @@ extension CartViewController {
                                           target: self,
                                           action: #selector(closeButtonTapped))
         navigationItem.rightBarButtonItem = closeButton
-        navigationItem.title = Constants.Texts.NavBar.title
+        navigationItem.title = Global.Constants.Pages.cart
     }
 }
