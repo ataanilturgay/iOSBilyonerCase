@@ -76,7 +76,35 @@ extension CartViewModel {
     }
     
     func removeItem(at index: Int) {
-        let item = CartManager.shared.items.value[index]
-        CartManager.shared.removeItem(item: item)
+        CartManager.shared.removeItem(index: index)
+    }
+}
+
+// MARK: - For Test
+
+extension CartViewModel: MockTestViewModel {
+    
+    func testableFilterContent(query: String) {
+        
+    }
+    
+    func testableSetElements(elements: [BaseCellDataProtocol]) {
+        self.elements = elements
+    }
+    
+    func testableSetBehaviourElements(elements: [BaseCellDataProtocol]) {
+        self.behaviorElements.accept(elements)
+    }
+    
+    func getElements() -> [BaseCellDataProtocol] {
+        return self.elements
+    }
+    
+    func getBehaviourElements() -> BehaviorRelay<[BaseCellDataProtocol]> {
+        return self.behaviorElements
+    }
+    
+    func calculateCartTotal() -> Double {
+        return CartManager.shared.calculateCartTotal()
     }
 }

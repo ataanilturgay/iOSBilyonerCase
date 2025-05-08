@@ -83,7 +83,7 @@ final class CartViewController: BaseViewController {
                                  CartManager.shared.items.asObservable())
         .observe(on: MainScheduler.instance)
         .subscribe(onNext: { [weak self] count, items in
-            guard let self else { return }
+            guard let self, items.count > 0 else { return }
             let cartTotal = CartManager.shared.calculateCartTotal()
             let eventTitle = String(format: Constants.Texts.eventTitle, count)
             self.cartTotalView.configure(with: CartTotalViewModel(carTotal: cartTotal, eventTitle: eventTitle))
@@ -106,12 +106,7 @@ final class CartViewController: BaseViewController {
             guard let self else { return }
             self.tableView.removeFromSuperview()
             self.cartTotalView.removeFromSuperview()
-            let emptyView = EmptyView(frame: CGRect(x: self.view.bounds.size.width/2 - 100,
-                                                    y: self.view.bounds.size.height/2 - 50,
-                                                    width: 200,
-                                                    height: 100))
-            emptyView.configure(with: .cart)
-            self.view.addSubview(emptyView)
+            self.showEmptyView(type: .cart, in: self.view)
         }).disposed(by: disposeBag)
         
         viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)

@@ -11,6 +11,8 @@ import RxSwift
 
 final class SportsTableViewCell: BaseTableViewCell {
     
+    // MARK: - UI Elements
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

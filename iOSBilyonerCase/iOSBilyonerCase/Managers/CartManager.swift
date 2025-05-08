@@ -26,6 +26,17 @@ final class CartManager {
         AnalyticsManager.shared.sendEvent(event: .addToCart)
     }
     
+    func removeItem(index: Int) {
+        var currentItems = items.value
+        if index >= currentItems.count {
+            return
+        }
+        currentItems.remove(at: index)
+        items.accept(currentItems)
+        cartItemCount.accept(max(cartItemCount.value - 1, 0))
+        AnalyticsManager.shared.sendEvent(event: .removeFromCart)
+    }
+    
     func removeItem(item: Cart) {
         var currentItems = items.value
         if currentItems.contains(where: { $0.id == item.id }) {
@@ -42,5 +53,11 @@ final class CartManager {
             return result * (item.price)
         }
         return Double(round(1000 * total) / 1000)
+    }
+    
+    func clearItems() {
+        var currentItems = items.value
+        currentItems.removeAll()
+        items.accept(currentItems)
     }
 }

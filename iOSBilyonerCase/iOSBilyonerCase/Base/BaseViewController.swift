@@ -11,6 +11,17 @@ import RxCocoa
 
 class BaseViewController: UIViewController, Navigatable {
     
+    private enum Constants {
+        
+        enum EmptyView {
+            
+            static let width: CGFloat = 200
+            static let height: CGFloat = 100
+        }
+    }
+    
+    // MARK: - UI Elements
+    
     private lazy var cartButton: CartButton = {
         let button = CartButton(type: .custom)
         button.setImage(UIImage(systemName: "cart"), for: .normal)
@@ -67,6 +78,26 @@ class BaseViewController: UIViewController, Navigatable {
                        sender: self,
                        animated: true,
                        transition: .modalWithOverFullScreen(withNavigation: true))
+    }
+}
+
+// MARK: - Show Empty View
+
+extension BaseViewController {
+    
+    func showEmptyView(type: EmptyTypes, in view: UIView) {
+        let emptyView = EmptyView(frame: .zero)
+        emptyView.configure(with: type)
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(emptyView)
+        
+        NSLayoutConstraint.activate([
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyView.widthAnchor.constraint(equalToConstant: Constants.EmptyView.width),
+            emptyView.heightAnchor.constraint(equalToConstant: Constants.EmptyView.height)
+        ])
     }
 }
 

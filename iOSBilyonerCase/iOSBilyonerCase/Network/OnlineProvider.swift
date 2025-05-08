@@ -50,8 +50,8 @@ final class OnlineProvider<Target> where Target: Moya.TargetType {
             .asObservable()
         
         return online
-            .filter { $0 == true } // yalnızca online olduğumda ilerle
-            .take(1) // sadece ilk true değerini al
+            .filter { $0 == true }
+            .take(1)
             .flatMap { _ in
                 actualRequest.do(onNext: { response in
                     debugPrint("Response: \(response.statusCode)")

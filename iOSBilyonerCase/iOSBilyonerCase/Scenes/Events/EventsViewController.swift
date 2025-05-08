@@ -101,12 +101,7 @@ final class EventsViewController: BaseViewController {
 
             guard let self else { return }
             self.tableView.removeFromSuperview()
-            let emptyView = EmptyView(frame: CGRect(x: self.view.bounds.size.width/2 - 100,
-                                                    y: self.view.bounds.size.height/2 - 50,
-                                                    width: 200,
-                                                    height: 100))
-            emptyView.configure(with: .events)
-            self.view.addSubview(emptyView)
+            self.showEmptyView(type: .events, in: self.view)
         }).disposed(by: disposeBag)
         
         viewModel.parsedError.bind(to: rx.errorAlert).disposed(by: disposeBag)

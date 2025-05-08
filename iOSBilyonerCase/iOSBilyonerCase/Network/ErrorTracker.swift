@@ -68,6 +68,7 @@ final class ErrorTracker: SharedSequenceConvertibleType {
 }
 
 extension ObservableConvertibleType {
+    
     func trackError(_ errorTracker: ErrorTracker) -> Observable<Element> {
         return errorTracker.trackError(from: self)
     }
